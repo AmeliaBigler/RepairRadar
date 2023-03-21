@@ -11,11 +11,11 @@ Ticket.init(
             primaryKey: true,
             autoIncrement: true
         },
-        car_make: {
+        carMake: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        car_model: {
+        carModel: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -23,7 +23,7 @@ Ticket.init(
             type: DataTypes.STRING,
             allowNull: false
         },
-        user_id: {
+        userId: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
@@ -33,7 +33,6 @@ Ticket.init(
     },
     {
         sequelize,
-        timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'ticket',
