@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS vroomvroom_db;
+
+-- CREATE DATABASE
+CREATE DATABASE vroomvroom_db;
