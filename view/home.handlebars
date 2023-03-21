@@ -1,0 +1,11 @@
+{{#each tickets as |ticket|}}
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ticket.id}}</h5>
+    <p class="card-text">{{ticket.carMake}}</p>
+    <p class="card-text">{{ticket.carModel}}</p>
+    <p class="card-text">{{ticket.issue}}</p>
+    <a href="/ticket/{{ticket.id}}" class="btn btn-primary">See ticket</a>
+  </div>
+</div>
+{{/each}}
