@@ -31,7 +31,7 @@ app.use(router)
 
 app.use(express.static("public"))
 
-sequelize.sync({ force: true }).then(
+sequelize.sync().then(
     app.listen(PORT, () => {
         console.log(`Listening at http://localhost:${PORT}`)
     })
