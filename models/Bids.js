@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Ticket extends Model {}
+class Bids extends Model {}
 
-Ticket.init(
+Bids.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,41 +11,31 @@ Ticket.init(
             primaryKey: true,
             autoIncrement: true
         },
-        carMake: {
+        content: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        carModel: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        issue: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        winner: {
+        mechanicId: {
             type: DataTypes.INTEGER,
-            allowNull: true,
-            defaultNull: true,
             references: {
                 model: 'mechanic',
                 key: 'id'
-            },
+            }
         },
-        userId: {
-            type: DataTypes.INTEGER,
+        ticketId: {
+            type:DataTypes.INTEGER,
             references: {
-                model: 'user',
+                model: 'ticket',
                 key: 'id'
             }
-        }
+        },
     },
     {
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'ticket',
+        modelName: 'bids',
     }
-)
+);
 
-module.exports = Ticket
+module.exports = Bids
