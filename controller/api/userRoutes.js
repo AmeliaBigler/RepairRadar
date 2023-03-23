@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User, Mechanic } = require('../../models');
+const { signup } = require("../../util/mailer")
+
 
 router.post("/", async (req, res) => {
   if (req.body.mechanic) {
@@ -16,7 +18,7 @@ router.post("/", async (req, res) => {
       req.session.username = req.body.username;
       req.session.isMechanic = true;
     });
-    return res.status(201).json("Created")
+    return signup(req, res)
   }
   const userData = await User.findOne({
     where: {
@@ -31,7 +33,7 @@ router.post("/", async (req, res) => {
     req.session.username = req.body.username;
     req.session.isMechanic = true;
   });
-  return res.status(201).json("Created")
+  signup(req, res)
 })
 
 router.post('/login', async (req, res) => {

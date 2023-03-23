@@ -12,7 +12,7 @@
         "userId": 2
     },
     {
-        "carmake": "Chevy",
+        "carMake": "Chevy",
         "carModel": "Cruze",
         "issue": "My A/C isn't blowing cold air and I'd like someone to look at it to be able to get it working again.",
         "userId": 3

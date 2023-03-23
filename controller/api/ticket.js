@@ -37,6 +37,6 @@ ticket.post("/", isAuth, async (req, res) => {
                 partsId: part.id
             }
         })
-        await TicketParts.bulkCreate()
+        await TicketParts.bulkCreate(partsWithIds)
     }
 })
