@@ -14,16 +14,28 @@ dashboard.get("/", isAuth, async (req, res) => {
 
         if (!userData) {
             const mechanicData = await Mechanic.findOne({
-                include: [{ modle: Ticket }, { modle: Bids }],
+                include: [{ model: Bids }],
                 where: {
                     username: req.session.username
                 }
             })
             const mechanic = mechanicData.get({ plain: true });
+            const bids = mechanic.bids
+            var tickets = bids.map(async bid => {
+                const ticketData = await Ticket.findByPk(bid.tickedId, {
+                    include: {
+                        model: Bids,
+                        where: {
+                            mechanicId: mechanic.id
+                        }
+                    }
+                })
+                return ticketData.get({ plain: true })
+            });
+            res.render("dashboard", { mechanic: mechanic, tickets: tickets });
+        } else {
+            const user = userData.get({ plain: true });
             res.render("dashboard", { user });
-        } else{
-        const user = userData.get({ plain: true });
-        res.render("dashboard", { user });
         }
     } catch (error) {
         res.status(500).json(error)
