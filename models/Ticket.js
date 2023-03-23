@@ -6,10 +6,9 @@ class Ticket extends Model {}
 Ticket.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+            type: DataTypes.UUID,
             primaryKey: true,
-            autoIncrement: true
+            defaultValue: DataTypes.UUIDV4
         },
         carMake: {
             type: DataTypes.STRING,

@@ -68,23 +68,6 @@ dashboard.put("/", async (req, res) => {
     }
 });
 
-dashboard.delete("/ticket/:id", async (req, res) => {
-    try {
-        await Ticket.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-        const ticketData = await Ticket.findByPk(req.body.id, {
-            include: { model: Bids }
-        });
-        const ticket = ticketData.get({ plain: true });
-        res.render("dashboard", { ticket });
-    } catch (error) {
-        res.status(500).json(error)
-    }
-});
-
 dashboard.delete("/bid/:id", async (req, res) => {
     await Bids.destroy({
         where: {
@@ -97,3 +80,5 @@ dashboard.delete("/bid/:id", async (req, res) => {
     const ticket = ticketData.get({ plain: true });
     res.render("dashboard", { ticket });
 });
+
+module.exports = dashboard
