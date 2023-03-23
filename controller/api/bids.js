@@ -2,17 +2,17 @@ const bids = require("express").Router()
 const { Ticket, Bids, User, Mechanic } = require("../../models/index.js")
 
 bids.post("/:id", async (req, res) => {
-    const userData = await User.findOne({
+    const mechanicData = await Mechanic.findOne({
         where: {
             username: req.body.username
         }
     })
-    const user = userData.get({ plain: true })
+    const mechanic = mechanicData.get({ plain: true })
     const ticketData = await Ticket.findByPk(req.params.id)
     const ticket = ticketData.get({ plain: true })
     await Bids.create({
         content: req.body.content,
-        mechanicId: user.id,
+        mechanicId: mechanic.id,
         ticketId: ticket.id
     })
     res.status(201).json("Create")
