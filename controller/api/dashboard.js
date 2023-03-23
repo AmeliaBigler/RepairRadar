@@ -68,17 +68,4 @@ dashboard.put("/", async (req, res) => {
     }
 });
 
-dashboard.delete("/bid/:id", async (req, res) => {
-    await Bids.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-    const ticketData = await Ticket.findByPk(req.body.id, {
-        include: { model: Bids }
-    });
-    const ticket = ticketData.get({ plain: true });
-    res.render("dashboard", { ticket });
-});
-
 module.exports = dashboard
