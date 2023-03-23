@@ -16,5 +16,17 @@
         "carModel": "Cruze",
         "issue": "My A/C isn't blowing cold air and I'd like someone to look at it to be able to get it working again.",
         "userId": 3
+    },
+    {
+        "carMake": "Acura",
+        "carModel": "MDX",
+        "issue": "My A/C isn't blowing cold air and I'd like someone to look at it to be able to get it working again.",
+        "userId": 3
+    },
+    {
+        "carMake": "Volkswagen",
+        "carModel": "Golf",
+        "issue": "My A/C isn't blowing cold air and I'd like someone to look at it to be able to get it working again.",
+        "userId": 3
     }
 ]
