@@ -1,6 +1,6 @@
 const ticket = require("express").Router();
-const { Ticket, Parts, TicketParts, User } = require("../../models/index.js");
-const isAuth = require("../../util/isAuth");
+const { Ticket, Parts, TicketParts, User } = require("../models/index.js");
+const isAuth = require("../util/isAuth");
 
 ticket.get("/:id", async (req, res) => {
     const ticketData = await Ticket.findByPk(req.params.id);
@@ -40,3 +40,22 @@ ticket.post("/", isAuth, async (req, res) => {
         await TicketParts.bulkCreate(partsWithIds)
     }
 })
+
+ticket.delete("/:id", async (req, res) => {
+    try {
+        await Ticket.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        const ticketData = await Ticket.findByPk(req.body.id, {
+            include: { model: Bids }
+        });
+        const ticket = ticketData.get({ plain: true });
+        res.render("dashboard", { ticket });
+    } catch (error) {
+        res.status(500).json(error)
+    }
+});
+
+module.exports = ticket
