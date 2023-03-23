@@ -62,19 +62,14 @@ const signup = async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
-
 }
 
 //Send a post request with the bidders info and the users info
 
-const winnerBid = async (req, res, table) => {
+const winnerBid = async (req, res, table, ticketData) => {
     try {
         //Find the mechanic who won the bid
-        const mechanicData = await table.findOne({
-            where: {
-                username: req.session.username
-            }
-        });
+        const mechanicData = await table.findByPk(req.body.mechanicId);
         
         //Get the data from the table
         const mechanic = await mechanicData.get({ plain: true });
@@ -105,7 +100,7 @@ const winnerBid = async (req, res, table) => {
         let response = {
             body: {
                 name: mechanic.username,
-                intro: "You've won! One of the tickets you've bid on has delcared ypu the winner!",
+                intro: "You've won! One of the tickets you've bid on has delcared you the winner!",
                 action: {
                     instructions: "View your dashboard by clicking on the link below",
                     //TODO: Add the link to the finished dashboard
@@ -125,7 +120,7 @@ const winnerBid = async (req, res, table) => {
             text: mailtext,
             html: mail
         }).then(() => {
-            res.status(201).json("Sent");
+            res.render("ticket", ticketData);
         })
     } catch (error) {
         res.status(500).json(error);
