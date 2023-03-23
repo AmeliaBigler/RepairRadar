@@ -12,5 +12,18 @@ Ticket.belongsTo(User, {
     foreignKey:'userId'
 });
 
-module.exports = { User, Ticket, Parts, 
-}
+Mechanic.hasMany(Bids, {
+    foreignKey: 'mechanicId',
+    foreignKey: 'userId'
+});
+
+Bids.belongsTo(Ticket,{
+    foreignKey: 'ticketId'
+});
+
+Parts.belongsToMany(Ticket, {
+    through: 'TicketParts'
+});
+
+
+module.exports = { User, Ticket, Parts, Mechanic, Bids }
