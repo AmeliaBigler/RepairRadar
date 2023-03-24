@@ -2,19 +2,41 @@
     {
         "carMake": "Lexus",
         "carModel": "RX350",
+        "modelYear": 2017,
+        "title": "Broken headlight",
         "issue": "My headlight went out and I don't have the tools to replace, I am searching for someone who can do that for me.",
         "userId": 1
     },
     {
         "carMake": "Toyota",
         "carModel": "Prius",
+        "modelYear": 2009,
+        "title": "Car is broken",
         "issue": "My timing belt went out in my car and I need it replaced.",
         "userId": 2
     },
     {
         "carMake": "Chevy",
         "carModel": "Cruze",
-        "issue": "My A/C isn't blowing cold air and I'd like someone to look at it to be able to get it working again.",
+        "modelYear": 2013,
+        "title": "Warning Light",
+        "issue": "My warning light is staying on and I have no idea what's wrong. I just need someone to take a look at it for me so I know nothing serious is wrong.",
         "userId": 3
+    },
+    {
+        "carMake": "Acura",
+        "carModel": "MDX",
+        "modelYear": 2016,
+        "title": "Brakes are going bad",
+        "issue": "I need them replaced and dont have the capabilities to do so.",
+        "userId": 1
+    },
+    {
+        "carMake": "Volkswagen",
+        "carModel": "Golf",
+        "modelYear": 2003,
+        "title": "Tire keeps going flat",
+        "issue": "I was hoping someone could patch my tire for me. It slowly gets flat every day but I dont want to buy a new tire because I know it can be patched.",
+        "userId": 2
     }
 ]

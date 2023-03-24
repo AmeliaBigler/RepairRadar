@@ -1,0 +1,128 @@
+header {
+    margin-bottom: 20px;
+    background-color: black;
+}
+
+.nav-link, .offcanvas-body, .offcanvas-title {
+    color: rgb(28, 158, 229) !important;
+}
+
+
+#offcanvasExample {
+    background-color: rgb(34, 31, 31);
+}
+
+body {
+    background-color: rgb(34, 31, 31);
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+.card {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    background-color: black;
+    color: white;
+    box-shadow: rgb(0, 195, 255) 0px 5px, rgba(30, 3, 208, 0.769) 5px 5px, rgba(30, 3, 208, 0.669) 10px 10px, rgba(30, 3, 208, 0.569) 15px 15px, rgba(30, 3, 208, 0.469) 20px 20px, rgba(30, 3, 208, 0.369) 15px 15px;
+}
+
+.card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+  }
+
+#githubButtons {
+     background-color: rgb(32, 31, 34);
+     padding: 15px;
+}
+
+  
+button, .navbar-brand {
+    --text-base: 207deg, 100%, 50%;
+    --text-hover: 307deg, 72%, 86%;
+    --shadow-start: 52deg, 100%, 72%;
+    --shadow-end: 282deg, 60%, 40%;
+    --shadow-inner: 207deg, 100%, 50%;
+    all: unset;
+    color: hsla(var(--text-base), 1);
+
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.85em;
+    max-width: 100%;
+    background: inherit;
+    background-clip: padding-box;
+    border: 5px solid hsla(var(--text-base), 1);
+    border-radius: 2em;
+    cursor: pointer;
+    position: relative;
+    transition: 0.25s ease-out;
+  }
+  button::before, button::after {
+    content: "";
+    border-radius: inherit;
+    transition: inherit;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  button::before {
+    inset: -0.2em;
+    z-index: -1;
+    background: linear-gradient(hsla(var(--shadow-start), 1), hsla(var(--shadow-end), 1));
+    filter: blur(1.2em) saturate(1.2);
+    transform-origin: bottom;
+    transform: scaleY(0.5);
+    opacity: 0;
+  }
+  button::after {
+    box-shadow: inset 0 0 0 1px #fff, 0 0 0 4px rgba(255, 255, 255, 0.7), 1px 1px 0 4px #fff;
+    mix-blend-mode: overlay;
+    opacity: 0;
+  }
+  button:hover, button:focus {
+    color: hsla(var(--text-hover), 1);
+    border-color: transparent;
+    box-shadow: inset 0 1.4em 0 hsla(var(--shadow-inner), 0.1), inset 0 0 1.4em hsla(var(--shadow-inner), 0.32), 0 1px 1px hsla(var(--shadow-inner), 0.32);
+  }
+  button:hover::before, button:hover::after, button:focus::before, button:focus::after {
+    transform: none;
+    opacity: 1;
+  }
+
+  .navbar-brand::before, .navbar-brand::after {
+    content: "";
+    border-radius: inherit;
+    transition: inherit;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .navbar-brand::before {
+    inset: -0.2em;
+    z-index: -1;
+    background: linear-gradient(hsla(var(--shadow-start), 1), hsla(var(--shadow-end), 1));
+    filter: blur(1.2em) saturate(1.2);
+    transform-origin: bottom;
+    transform: scaleY(0.5);
+    opacity: 0;
+  }
+  .navbar-brand::after {
+    box-shadow: inset 0 0 0 1px #fff, 0 0 0 4px rgba(255, 255, 255, 0.7), 1px 1px 0 4px #fff;
+    mix-blend-mode: overlay;
+    opacity: 0;
+  }
+  .navbar-brand:hover, .navbar-brand:focus {
+    color: hsla(var(--text-hover), 1);
+    box-shadow: inset 0 1.4em 0 hsla(var(--shadow-inner), 0.1), inset 0 0 1.4em hsla(var(--shadow-inner), 0.32), 0 1px 1px hsla(var(--shadow-inner), 0.32);
+  }
+  .navbar-brand:hover::before, .navbar-brand:hover::after, .navbar-brand:focus::before, .navbar-brand:focus::after {
+    transform: none;
+    opacity: 1;
+  }
