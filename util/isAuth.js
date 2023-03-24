@@ -1,8 +1,8 @@
 function isAuth (req, res, next){
-    if (req.session.user){
+    if (req.session.user_id){
         next();
     } else {
-        res.redirect("/user/login");
+        res.redirect("/users/login");
     }
 }
 
