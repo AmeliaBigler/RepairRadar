@@ -39,7 +39,7 @@ router.post("/", async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-
+    console.log(req.body);
     if (!userData) {
       res
         .status(400)
@@ -75,6 +75,15 @@ router.post('/logout', (req, res) => {
     });
   } else {
     res.status(404).end();
+  }
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  } else {
+    res.render('login');
   }
 });
 
