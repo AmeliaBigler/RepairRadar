@@ -23,7 +23,7 @@ Bids.init(
             }
         },
         ticketId: {
-            type:DataTypes.UUID,
+            type:DataTypes.INTEGER,
             references: {
                 model: 'ticket',
                 key: 'id'

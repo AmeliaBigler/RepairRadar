@@ -2,16 +2,16 @@
     {
         "content": "I actually work for a Lexus dealership and know exactly how to get this done. Would take about 30 minutes and I can do it this weekend for $50 plus parts fees",
         "mechanicId": 1,
-        "userId": 1
+        "ticketId": 1
     },
     {
         "content": "Just replaced one last weekend for someone else. I know exactly what we'll need. We can work out a fair price to get this done for you.",
         "mechanicId": 2,
-        "userId": 2
+        "ticketId": 2
     },
     {
         "content": "I know exactly your issue, I deal with this all the time at my work. Can get it done this weekend if you'd like.",
         "mechanicId": 3,
-        "userId": 3
+        "ticketId": 3
     }
 ]
