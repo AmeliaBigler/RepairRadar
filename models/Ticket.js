@@ -10,12 +10,20 @@ Ticket.init(
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4
         },
+        title: {
+            type: DataTypes.STRING(30),
+            allowNull: false
+        },
         carMake: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         carModel: {
             type: DataTypes.STRING,
+            allowNull: false
+        },
+        modelYear: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         issue: {
