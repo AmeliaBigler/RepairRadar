@@ -4,6 +4,7 @@ const { signup } = require("../../util/mailer");
 
 
 router.post("/", async (req, res) => {
+  // if user is a mechanic:
   if (req.body.mechanic) {
     const mechanicData = await Mechanic.findOne({
       where: {
@@ -20,6 +21,7 @@ router.post("/", async (req, res) => {
     });
     return signup(req, res);
   }
+  // if user is a client:
   const userData = await User.findOne({
     where: {
       username: req.body.username
@@ -31,7 +33,7 @@ router.post("/", async (req, res) => {
   await User.create(req.body);
   req.session.save(() => {
     req.session.username = req.body.username;
-    req.session.isMechanic = true;
+    req.session.isMechanic = false;
   });
   signup(req, res);
 })
@@ -62,6 +64,7 @@ router.post('/login', async (req, res) => {
 
       req.session.save(() => {
         req.session.user_id = userData.id;
+        // req.session.username = userData.username;
         req.session.isMechanic = false;
         req.session.logged_in = true;
 
@@ -83,6 +86,7 @@ router.post('/login', async (req, res) => {
 
       req.session.save(() => {
         req.session.user_id = mechanicData.id;
+        // req.session.username = userData.username;
         req.session.isMechanic = true;
         req.session.logged_in = true;
 

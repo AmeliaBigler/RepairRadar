@@ -22,6 +22,10 @@ Bids.belongsTo(Ticket,{
     foreignKey: 'ticketId'
 });
 
+Ticket.hasMany(Bids,{
+    foreignKey: "ticketId"
+});
+
 Parts.belongsToMany(Ticket, {
     through: TicketParts
 });

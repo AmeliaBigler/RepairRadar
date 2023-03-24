@@ -21,7 +21,7 @@ dashboard.get("/", isAuth, async (req, res) => {
             });
             const mechanic = mechanicData.get({ plain: true });
             const bids = mechanic.bids;
-            var tickets = bids.map(async bid => {
+            const tickets = bids.map(async bid => {
                 const ticketData = await Ticket.findByPk(bid.tickedId, {
                     include: {
                         model: Bids,
