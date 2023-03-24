@@ -3,7 +3,7 @@ const Ticket = require('./Ticket.js');
 const Parts = require('./Parts.js');
 const Bids = require('./Bids.js');
 const Mechanic = require('./Mechanic.js');
-const TicketParts = require("./TicketParts")
+const TicketParts = require("./TicketParts");
 
 User.hasMany(Ticket, {
     foreignKey: 'userId',
@@ -27,4 +27,4 @@ Parts.belongsToMany(Ticket, {
 });
 
 
-module.exports = { User, Ticket, Parts, Mechanic, Bids, TicketParts }
+module.exports = { User, Ticket, Parts, Mechanic, Bids, TicketParts };

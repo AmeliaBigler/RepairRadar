@@ -10,7 +10,7 @@ dashboard.get("/", isAuth, async (req, res) => {
             where: {
                 username: req.session.username
             }
-        })
+        });
 
         if (!userData) {
             const mechanicData = await Mechanic.findOne({
@@ -18,9 +18,9 @@ dashboard.get("/", isAuth, async (req, res) => {
                 where: {
                     username: req.session.username
                 }
-            })
+            });
             const mechanic = mechanicData.get({ plain: true });
-            const bids = mechanic.bids
+            const bids = mechanic.bids;
             var tickets = bids.map(async bid => {
                 const ticketData = await Ticket.findByPk(bid.tickedId, {
                     include: {
@@ -29,8 +29,8 @@ dashboard.get("/", isAuth, async (req, res) => {
                             mechanicId: mechanic.id
                         }
                     }
-                })
-                return ticketData.get({ plain: true })
+                });
+                return ticketData.get({ plain: true });
             });
             res.render("dashboard", { mechanic: mechanic, tickets: tickets });
         } else {
@@ -38,7 +38,7 @@ dashboard.get("/", isAuth, async (req, res) => {
             res.render("dashboard", { user });
         }
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 });
 /* 
@@ -64,8 +64,8 @@ dashboard.put("/", async (req, res) => {
 
         winnerBid(req, res, Mechanic, ticket);
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 });
 
-module.exports = dashboard
+module.exports = dashboard;

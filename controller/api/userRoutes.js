@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User, Mechanic } = require('../../models');
-const { signup } = require("../../util/mailer")
+const { signup } = require("../../util/mailer");
 
 
 router.post("/", async (req, res) => {
@@ -9,16 +9,16 @@ router.post("/", async (req, res) => {
       where: {
         username: req.body.username
       }
-    })
+    });
     if (mechanicData) {
-      return res.status(404).render("signup", { message: "Username is already taken" })
+      return res.status(404).render("signup", { message: "Username is already taken" });
     }
-    await Mechanic.create(req.body)
+    await Mechanic.create(req.body);
     req.session.save(() => {
       req.session.username = req.body.username;
       req.session.isMechanic = true;
     });
-    return signup(req, res)
+    return signup(req, res);
   }
   const userData = await User.findOne({
     where: {
@@ -26,14 +26,14 @@ router.post("/", async (req, res) => {
     }
   })
   if (userData) {
-    return res.status(404).render("signup", { message: "Username is already taken" })
+    return res.status(404).render("signup", { message: "Username is already taken" });
   }
-  await User.create(req.body)
+  await User.create(req.body);
   req.session.save(() => {
     req.session.username = req.body.username;
     req.session.isMechanic = true;
   });
-  signup(req, res)
+  signup(req, res);
 })
 
 router.post('/login', async (req, res) => {

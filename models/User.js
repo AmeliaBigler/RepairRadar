@@ -6,7 +6,7 @@ class User extends Model {
     checkPassword(loginPw) {
         return bcrypt.compare(loginPw, this.password);
       }
-}
+};
 
 User.init(
     {
@@ -56,4 +56,4 @@ User.init(
       }
 );
 
-module.exports = User
+module.exports = User;
