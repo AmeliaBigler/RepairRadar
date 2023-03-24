@@ -3,17 +3,18 @@ header {
     background-color: black;
 }
 
-.nav-link, .offcanvas-body, .offcanvas-title {
+.nav-link, .offcanvas-body {
     color: rgb(28, 158, 229) !important;
 }
 
 
-#offcanvasExample {
+.offcanvas {
     background-color: rgb(34, 31, 31);
 }
 
 body {
     background-color: rgb(34, 31, 31);
+    font-family: 'Philosopher', sans-serif;
 }
 
 .card-container {
@@ -25,9 +26,9 @@ body {
 .card {
     margin-top: 10px;
     margin-bottom: 5px;
-    background-color: black;
+    background-color: rgb(19, 18, 21);
     color: white;
-    box-shadow: rgb(0, 195, 255) 0px 5px, rgba(30, 3, 208, 0.769) 5px 5px, rgba(30, 3, 208, 0.669) 10px 10px, rgba(30, 3, 208, 0.569) 15px 15px, rgba(30, 3, 208, 0.469) 20px 20px, rgba(30, 3, 208, 0.369) 15px 15px;
+    box-shadow: rgb(255, 0, 238) 0px 5px, rgba(30, 3, 208, 0.769) 5px 5px, rgba(30, 3, 208, 0.669) 10px 10px, rgba(30, 3, 208, 0.569) 15px 15px, rgba(30, 3, 208, 0.469) 20px 20px, rgba(30, 3, 208, 0.369) 15px 15px;
 }
 
 .card-text {
@@ -45,7 +46,7 @@ body {
   
 button, .navbar-brand {
     --text-base: 207deg, 100%, 50%;
-    --text-hover: 307deg, 72%, 86%;
+    --text-hover: 307deg, 45%, 86%;
     --shadow-start: 52deg, 100%, 72%;
     --shadow-end: 282deg, 60%, 40%;
     --shadow-inner: 207deg, 100%, 50%;
@@ -125,4 +126,31 @@ button, .navbar-brand {
   .navbar-brand:hover::before, .navbar-brand:hover::after, .navbar-brand:focus::before, .navbar-brand:focus::after {
     transform: none;
     opacity: 1;
+  }
+
+#ticketissue {
+    padding: 30px;
+}
+
+#offcanvas-issue {
+    margin-bottom: 20px;
+}
+
+#offcanvasUser {
+    color: white;
+}
+
+#bidCanvas {
+    color:rgb(0, 162, 255);
+    background-color: rgba(0, 0, 0, 0.765);
+}
+
+.offcanvas-title {
+    text-align: center;
+}
+
+@media (max-width: 770px) {
+    #githubButtons {
+      display: none;
+    }
   }
