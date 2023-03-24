@@ -1,5 +1,5 @@
 const ticket = require("express").Router();
-const { Ticket, Parts, TicketParts, User } = require("../models/index.js");
+const { Ticket, Parts, TicketParts, User, Bids } = require("../models/index.js");
 const isAuth = require("../util/isAuth");
 
 ticket.get("/:id", async (req, res) => {
@@ -16,8 +16,10 @@ ticket.post("/", isAuth, async (req, res) => {
     });
     const user = userData.get({ plain: true });
     const newTicket = await Ticket.create({
+        title: req.body.title,
         carMake: req.body.carMake,
         carModel: req.body.carModel,
+        modelYear: req.body.modelYear,
         issue: req.body.issue,
         userId: user.id
     }, {
