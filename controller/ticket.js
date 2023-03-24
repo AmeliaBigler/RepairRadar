@@ -30,16 +30,28 @@ ticket.post("/", isAuth, async (req, res) => {
                 where: {
                     name: part
                 }
-            })
+            });
             var part = partData.get({ plain: true });
             return {
                 ticketId: newTicket.id,
                 partsId: part.id
             }
+        });
+        await TicketParts.bulkCreate(partsWithIds);
+        return res.status(201).render(`/tickets/${newTicket.id}`);
+    };
+        var partsData = await Parts.findOne({
+            where: {
+                name: req.body.parts
+            }
+        });
+        var part = partsData.get({ plain: true});
+        await TicketParts.create({
+            ticketId: newTicket.id,
+            partsId: parts.id
         })
-        await TicketParts.bulkCreate(partsWithIds)
-    }
-})
+        res.status(201).render(`/tickets/${newTicket.id}`);
+});
 
 ticket.delete("/:id", async (req, res) => {
     try {
@@ -54,8 +66,8 @@ ticket.delete("/:id", async (req, res) => {
         const ticket = ticketData.get({ plain: true });
         res.render("dashboard", { ticket });
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 });
 
-module.exports = ticket
+module.exports = ticket;

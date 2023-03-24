@@ -1,9 +1,9 @@
 function isAuth (req, res, next){
     if (req.session.user){
-        next()
+        next();
     } else {
-        res.redirect("/user/login")
+        res.redirect("/user/login");
     }
 }
 
-module.exports = isAuth
+module.exports = isAuth;

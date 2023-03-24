@@ -8,11 +8,12 @@ home.get("/", async (req, res) => {
         res.render("home", { 
             logged_in: req.session.logged_in,
             tickets : tickets, user: req.session.username })
+
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json(error);
     }
 })
 
 
+module.exports = home;
 
-module.exports = home

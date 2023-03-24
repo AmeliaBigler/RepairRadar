@@ -6,7 +6,7 @@ class Mechanic extends Model {
     checkPassword(loginPw) {
         return bcrypt.compare(loginPw, this.password);
       }
-}
+};
 
 Mechanic.init(
     {
@@ -56,6 +56,6 @@ Mechanic.init(
       }
 );
 
-module.exports = Mechanic
+module.exports = Mechanic;
 
     
