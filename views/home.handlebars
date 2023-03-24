@@ -5,26 +5,34 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{user.username}}</h5>
-          <p class="card-text"> Vehicle: {{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</p>
+          <p class="card-text">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</p>
           <p class="card-text">{{ticket.title}}</p>
-          <button href="#offcanvasExample" class="btn btn-outline-primary" data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample">Place Bid</button>
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasExampleLabel">{{ticket.title}}</h5>
+          <button href="#offcanvasExample{{ticket.id}}" id="bidCanvas" class="btn btn-primary" data-bs-toggle="offcanvas" role="button"
+            aria-controls="offcanvasExample">Place Bid</button>
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{ticket.id}}"
+            aria-labelledby="offcanvasExampleLabel">
+            <div data-bs-theme="dark" class="offcanvas-header text-center">
+              <div class="rows">
+              <h5 class="offcanvas-user" id="offcanvasUser">{{user.username}}'s problem</h5>
+              </div>  
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <div>
-                {{ticket.issue}}
-                <div class="dropdown mt-3">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                    Dropdown button
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Place Bid</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
+                <h5 class="offcanvas-title" id="offcanvasTitle">{{ticket.title}}</h5>
+                <div id="ticketissue">
+                 <div class="offcanvas-issue">{{ticket.issue}}</div>
+                <form>
+                  <div class="mt-3 mb-3">
+                    <label for="bidAmount"class="form-label">Bid Offer</label>
+                    <input type="number" placeholder="$"  class="form-control" id="bidAmount" name="bidAmount">
+                  </div>
+                  <div class="mb-3">
+                    <label for="bidMessage" class="form-label">Your Offer</label>
+                    <textarea class="form-control" placeholder="Make yourself stand out and good luck!" id="bidMessage" name="bidMessage"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit Bid</button>
+                </form>
                 </div>
               </div>
             </div>
@@ -35,5 +43,3 @@
     {{/each}}
   </div>
 </div>
-
-
