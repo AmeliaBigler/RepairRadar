@@ -38,30 +38,57 @@ router.post("/", async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
+    // search for user or mechanic
     const userData = await User.findOne({ where: { email: req.body.email } });
-    console.log(req.body);
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
+    const mechanicData = await Mechanic.findOne({ where: { email: req.body.email }});
+
+    // if neither, message try again
+    if (!userData && !mechanicData) {
+      res.status(400)
+      .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    // if user, validate user password. Session.isMechanic set to false.
+    if (userData) {
+      const validPassword = await userData.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.isMechanic = false;
+        req.session.logged_in = true;
+
+        res.json({ user: userData, message: 'You are now logged in!' });
+      });
     }
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+    // if mechanic, validate mechanic password. session.isMechanic set to true.
 
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
+    if (mechanicData) {
+      const validPassword = await mechanicData.checkPassword(req.body.password);
+
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+
+      req.session.save(() => {
+        req.session.user_id = mechanicData.id;
+        req.session.isMechanic = true;
+        req.session.logged_in = true;
+
+        res.json({ user: mechanicData, message: 'You are now logged in!' });
+      });
+    }
 
   } catch (err) {
     res.status(400).json(err);
