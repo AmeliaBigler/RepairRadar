@@ -5,19 +5,14 @@ const { winnerBid } = require("../../util/mailer");
 
 dashboard.get("/", isAuth, async (req, res) => {
     try {
-        const userData = await User.findOne({
-            include: [{ model: Ticket }, { model: Bids }],
-            where: {
-                username: req.session.username
-            }
+        const userData = await User.findByPk(req.session.user_id,{
+            include: [{ model: Ticket,
+            include: { model: Bids} }]
         });
 
         if (!userData) {
-            const mechanicData = await Mechanic.findOne({
-                include: [{ model: Bids }],
-                where: {
-                    username: req.session.username
-                }
+            const mechanicData = await Mechanic.findByPk(req.session.user_id, {
+                include: [{ model: Bids }]
             });
             const mechanic = mechanicData.get({ plain: true });
             const bids = mechanic.bids;
