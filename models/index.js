@@ -15,7 +15,6 @@ Ticket.belongsTo(User, {
 
 Mechanic.hasMany(Bids, {
     foreignKey: 'mechanicId',
-    foreignKey: 'userId'
 });
 
 Bids.belongsTo(Ticket,{

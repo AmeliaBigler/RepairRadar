@@ -5,33 +5,28 @@ const { winnerBid } = require("../../util/mailer");
 
 dashboard.get("/", isAuth, async (req, res) => {
     try {
+        if (req.session.isMechanic){
+            const mechanicData = await Mechanic.findByPk(req.session.user_id, {
+            include: [{ model: Bids }]
+        });
+        const mechanic = mechanicData.get({ plain: true });
+        const bids = mechanic.bids;
+        const tickets = bids.map(async bid => {
+            const ticketData = await Ticket.findByPk(bid.ticketId, {
+                include: {
+                    model: Bids
+                }
+            });
+            return ticketData.get({ plain: true });
+        });
+       return res.render("dashboard", { mechanic: mechanic, tickets: tickets });
+    } else {
         const userData = await User.findByPk(req.session.user_id,{
             include: [{ model: Ticket,
             include: { model: Bids} }]
         });
-
-        if (!userData) {
-            const mechanicData = await Mechanic.findByPk(req.session.user_id, {
-                include: [{ model: Bids }]
-            });
-            const mechanic = mechanicData.get({ plain: true });
-            const bids = mechanic.bids;
-            const tickets = bids.map(async bid => {
-                const ticketData = await Ticket.findByPk(bid.tickedId, {
-                    include: {
-                        model: Bids,
-                        where: {
-                            mechanicId: mechanic.id
-                        }
-                    }
-                });
-                return ticketData.get({ plain: true });
-            });
-            res.render("dashboard", { mechanic: mechanic, tickets: tickets });
-        } else {
-            const user = userData.get({ plain: true });
-            res.render("dashboard", { user });
-        }
+        const user = userData.get({ plain: true });
+        res.render("dashboard", { user });}
     } catch (error) {
         res.status(500).json(error);
     }

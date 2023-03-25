@@ -9,11 +9,7 @@ ticket.get("/:id", async (req, res) => {
 })
 
 ticket.post("/", isAuth, async (req, res) => {
-    const userData = await User.findOne({
-        where: {
-            username: req.session.username
-        }
-    });
+    const userData = await User.findByPk(req.session.user_id);
     const user = userData.get({ plain: true });
     const newTicket = await Ticket.create({
         title: req.body.title,
@@ -33,10 +29,10 @@ ticket.post("/", isAuth, async (req, res) => {
                     name: part
                 }
             });
-            var part = partData.get({ plain: true });
+            var partplain = partData.get({ plain: true });
             return {
                 ticketId: newTicket.id,
-                partsId: part.id
+                partsId: partplain.id
             }
         });
         await TicketParts.bulkCreate(partsWithIds);
