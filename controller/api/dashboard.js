@@ -11,7 +11,7 @@ dashboard.get("/", isAuth, async (req, res) => {
         });
         const mechanic = mechanicData.get({ plain: true });
         const bids = mechanic.bids;
-        const tickets = bids.map(async bid => {
+        let tickets = bids.map(async bid => {
             const ticketData = await Ticket.findByPk(bid.ticketId, {
                 include: {
                     model: Bids
@@ -19,10 +19,12 @@ dashboard.get("/", isAuth, async (req, res) => {
             });
             return ticketData.get({ plain: true });
         });
+        tickets = await Promise.all(tickets)
         return res.render("dashboard", { 
             mechanic: mechanic, 
             tickets: tickets,
-            logged_in: req.session.logged_in 
+            logged_in: req.session.logged_in, 
+            isMechanic: req.session.isMechanic
         });
         } else {
         const userData = await User.findByPk(req.session.user_id,{
@@ -32,7 +34,8 @@ dashboard.get("/", isAuth, async (req, res) => {
         const user = userData.get({ plain: true });
         res.render("dashboard", { 
             user: user,
-            logged_in: req.session.logged_in
+            logged_in: req.session.logged_in,
+            isMechanic: req.session.isMechanic
          });
         }
     } catch (error) {

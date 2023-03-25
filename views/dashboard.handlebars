@@ -1,18 +1,36 @@
-{{!-- 
-TODO:
-MECHANIC VERSION:
-notifications: won tickets
-view bids on tickets
-view won tickets
---}}
+{{!-- Mechanic dashboard: --}}
+{{#if isMechanic}}
 
-{{#if req.session.isMechanic}}
+<h3>{{mechanic.username}}</h3>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>My Open Bids</h2>
+    </div>
+    {{#each tickets as | ticket |}}
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Ticket: {{ticket.title}}</h4>
+            <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
+            <p class="card-text">My Bid: {{ticket.bids.0.content}}</p>
+            <a href="./tickets/{{ticket.id}}">View Ticket</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+{{else}}
+{{!-- User dashboard: --}}
+
 <div class="container">
     <div class="row">
         <div class="col">
-            <h2>My Won Tickets</h2>
+            <a href="/newTicket">Create a new ticket</a>
         </div>
     </div>
 </div>
-{{/if}}
 
+{{/if}}
