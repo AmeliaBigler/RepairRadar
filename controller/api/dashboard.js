@@ -19,14 +19,22 @@ dashboard.get("/", isAuth, async (req, res) => {
             });
             return ticketData.get({ plain: true });
         });
-       return res.render("dashboard", { mechanic: mechanic, tickets: tickets });
-    } else {
+        return res.render("dashboard", { 
+            mechanic: mechanic, 
+            tickets: tickets,
+            logged_in: req.session.logged_in 
+        });
+        } else {
         const userData = await User.findByPk(req.session.user_id,{
             include: [{ model: Ticket,
             include: { model: Bids} }]
         });
         const user = userData.get({ plain: true });
-        res.render("dashboard", { user });}
+        res.render("dashboard", { 
+            user: user,
+            logged_in: req.session.logged_in
+         });
+        }
     } catch (error) {
         res.status(500).json(error);
     }

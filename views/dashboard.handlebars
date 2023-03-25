@@ -5,7 +5,8 @@ notifications: won tickets
 view bids on tickets
 view won tickets
 --}}
-{{!-- {{#if req.session.isMechanic}}
+
+{{#if req.session.isMechanic}}
 <div class="container">
     <div class="row">
         <div class="col">
@@ -13,70 +14,5 @@ view won tickets
         </div>
     </div>
 </div>
-{{!-- {{#each tickets.winner as |won|}}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{won.id}}</h5>
-    <p class="card-text">{{won.carMake}}</p>
-    <p class="card-text">{{won.carModel}}</p>
-    <p class="card-text">{{won.issue}}</p>
-  </div>
-</div>
-{{/each}} --}}
+{{/if}}
 
-{{!-- <div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>My Open Bids</h2>
-        </div>
-    </div>
-</div>
-{{#each tickets as |ticket|}}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">My bid on: {{ticket.title}}</h5>
-    <p class="card-text">{{ticket.bid.content}}</p>
-    <a href="/ticket/{{ticket.id}}" class="btn btn-primary">See ticket</a>
-  </div>
-</div>
-{{/each}}
-
-{{/if}} --}}
-
-
-{{!-- 
-TODO:
-USER VERSION:
-notifications: new bids
-button to create new ticket
-view open tickets
---}}
-{{!-- {{#if !req.session.isMechanic}}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <a href="/newTicket">Create a new ticket</a>
-        </div>
-    </div>
-</div> --}}
-
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>My Tickets:</h2>
-        </div>
-    </div>
-</div>
-{{!-- {{#each user.ticket as |ticket|}}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{ticket.id}}</h5>
-    <p class="card-text">{{ticket.carMake}}</p>
-    <p class="card-text">{{ticket.carModel}}</p>
-    <p class="card-text">{{ticket.issue}}</p>
-    <a href="/ticket/{{ticket.id}}" class="btn btn-primary">See ticket</a>
-  </div>
-</div>
-{{/each}}
-
-{{/if}} --}}
