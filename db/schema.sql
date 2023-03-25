@@ -3,6 +3,3 @@ DROP DATABASE IF EXISTS vroomvroom_db;
 
 -- CREATE DATABASE
 CREATE DATABASE vroomvroom_db;
-
---USE DATABASE
-USE vroomvroom_db;
