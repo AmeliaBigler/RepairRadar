@@ -11,6 +11,10 @@ Bids.init(
             primaryKey: true,
             autoIncrement: true
         },
+        amount: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         content: {
             type: DataTypes.STRING,
             allowNull: false,

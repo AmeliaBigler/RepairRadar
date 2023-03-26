@@ -7,7 +7,9 @@ home.get("/", async (req, res) => {
         const tickets = ticketData.map(ticket => ticket.get({ plain: true}))
         res.render("home", { 
             logged_in: req.session.logged_in,
-            tickets : tickets, user: req.session.username })
+            isMechanic: req.session.isMechanic,
+            tickets : tickets, 
+            user: req.session.username })
 
     } catch (error) {
         res.status(500).json(error);
