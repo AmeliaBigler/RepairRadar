@@ -9,8 +9,8 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Philosopher:ital,wght@1,700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -31,17 +31,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/ticket">Tickets</a>
                         </li>
                         {{#if logged_in}}
                         <li class="nav-item">
-                            <a class="nav-link" id="logout">Logout</a>
+                            <a class="nav-link" href="/dashboard">My Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/dashboard">My Dashboard</a>
+                            <a class="nav-link" id="logout">Logout</a>
                         </li>
                         {{else}}
                         <li class="nav-item-login">
@@ -59,13 +56,13 @@
     <div class="container-fluid fixed-bottom" id="githubButtons">
         <div class="row justify-content-center">
             <div class="col-auto">
-                <button type="button" class="btn btn-outline-primary"><i class="fab fa-github"></i> Jon G</button>
+                <button type="button" class="btn btn-outline-primary" id="jonButton"><i class="fab fa-github"></i> Jon G</button>
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-outline-primary"><i class="fab fa-github"></i> Amelia</button>
+                <button type="button" class="btn btn-outline-primary" id="ameliaButton"><i class="fab fa-github"></i> Amelia</button>
             </div>
             <div class="col-auto">
-                <button type="button" class="btn btn-outline-primary"><i class="fab fa-github"></i> David</button>
+                <button type="button" class="btn btn-outline-primary" id="davidButton"><i class="fab fa-github"></i> David</button>
             </div>
         </div>
     </div>
@@ -75,6 +72,7 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous">
     </script>
+    <script src="/js/devs.js"></script>
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
