@@ -1,11 +1,16 @@
 const ticket = require("express").Router();
-const { Ticket, Parts, TicketParts, User, Bids } = require("../models/index.js");
+const { Ticket, Parts, TicketParts, User, Bids, Mechanic } = require("../models/index.js");
 const isAuth = require("../util/isAuth");
 
 ticket.get("/:id", async (req, res) => {
-    const ticketData = await Ticket.findByPk(req.params.id);
-    const ticket = ticketData.get({ plain: true });
-    res.render("ticket", { ticket });
+    const ticketData = await Ticket.findByPk(req.params.id, {
+        include: [{ model: Mechanic }]
+    });
+    const ticket = await ticketData.get({ plain: true });
+
+    return res.render("ticket", { 
+        ticket: ticket
+    });
 })
 
 ticket.get("/", isAuth, async (req, res) => {
@@ -64,6 +69,29 @@ ticket.post("/", isAuth, async (req, res) => {
         res.status(500).json(error);
     }
 });
+
+ticket.put('/:id', isAuth, async (req, res) => {
+    // update a ticket with a winning bid
+    /* req.body example:
+      {
+        "winner":"Sal"
+      }
+    */
+    try {
+      const ticketData = await Ticket.update(req.body, {
+        where: {
+          id: req.params.id,
+        }
+      });
+      if (!ticketData[0]) {
+        res.status(404).json({ message: 'No ticket with this id!' });
+        return;
+      }
+      res.status(200).json(ticketData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 ticket.delete("/:id", isAuth, async (req, res) => {
     try {

@@ -6,5 +6,8 @@
     <p class="card-text">{{ticket.carMake}}</p>
     <p class="card-text">{{ticket.carModel}}</p>
     <p class="card-text">{{ticket.issue}}</p>
+    {{#if ticket.winner}}
+    <p>Your mechanic: {{ticket.mechanic.username}}</p>
+    {{/if}}
   </div>
 </div>
