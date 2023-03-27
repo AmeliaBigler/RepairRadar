@@ -1,0 +1,10 @@
+[ {
+    "userId": 1,
+    "mechanicId": 1
+}, {
+    "userId":2,
+    "mechanicId":2
+}, {
+    "userId": 3,
+    "mechanicId": 3
+}]
