@@ -31,7 +31,6 @@ Parts.belongsToMany(Ticket, {
     through: TicketParts
 });
 
-<<<<<<< Updated upstream
 Mechanic.hasMany(Ticket,{
     foreignKey: 'winner'
 });
@@ -39,11 +38,9 @@ Mechanic.hasMany(Ticket,{
 Ticket.belongsTo(Mechanic,{
     foreignKey: 'winner'
 });
-=======
 Message.belongsTo(User, {
     foreignKey: "userId"
 })
->>>>>>> Stashed changes
 
 Message.belongsTo(Mechanic, {
     foreignKey: "mechanicId"
