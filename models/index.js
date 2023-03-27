@@ -29,5 +29,12 @@ Parts.belongsToMany(Ticket, {
     through: TicketParts
 });
 
+Mechanic.hasMany(Ticket,{
+    foreignKey: 'winner'
+});
+
+Ticket.belongsTo(Mechanic,{
+    foreignKey: 'winner'
+});
 
 module.exports = { User, Ticket, Parts, Mechanic, Bids, TicketParts };

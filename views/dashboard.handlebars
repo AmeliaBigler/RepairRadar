@@ -25,13 +25,46 @@
 
 {{else}}
 {{!-- User dashboard: --}}
+<h2>{{user.username}}</h2>
 
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="/newTicket">Create a new ticket</a>
+            <a href="./tickets">Create a new ticket</a>
         </div>
     </div>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h3>My Open Tickets</h3>
+    </div>
+    {{#each user.tickets as | ticket |}}
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Ticket: {{ticket.title}}</h4>
+          <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
+        {{#if ticket.winner}}
+          <p class="card-text">Your Mechanic: {{ticket.mechanic.username}}</p>
+        {{else}}
+          {{#if ticket.bids.length}}
+            {{#each ticket.bids as | bid |}}
+          <p class="card-text">Mechanic Bid: ${{bid.amount}}</p>
+          <p class="card-text">Mechanic Message: {{bid.content}}</p>
+          <button class="acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}">Accept this bid</button>
+            {{/each}}
+          {{else}}
+          <p class="card-text">No bids, yet.</p>
+          {{/if}}
+        {{/if}}
+          <a href="./tickets/{{ticket.id}}">View Ticket</a>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+<script src="../js/acceptBid.js"></script>
 {{/if}}

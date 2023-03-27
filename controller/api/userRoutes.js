@@ -2,40 +2,56 @@ const router = require('express').Router();
 const { User, Mechanic } = require('../../models');
 const { signup } = require("../../util/mailer");
 
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  } else {
+    res.render('signup');
+  }
+});
 
-router.post("/", async (req, res) => {
+router.post("/signup", async (req, res) => {
   // if user is a mechanic:
-  if (req.body.mechanic) {
-    const mechanicData = await Mechanic.findOne({
+  try {
+    if (req.body.userType === 'Mechanic') {
+      const mechanicData = await Mechanic.findOne({
+        where: {
+          username: req.body.username
+        }
+      });
+      if (mechanicData) {
+        return res.status(404).render("signup", { message: "Username is already taken" });
+      }
+      await Mechanic.create(req.body);
+      req.session.save(() => {
+        // req.session.username = req.body.username;
+        // req.session.isMechanic = true;
+        res.json({ user: mechanicData, message: 'Sign up successful! You may log in!' });
+      });
+      // signup(req, res);
+    } else {
+      // if user is a client:
+      const userData = await User.findOne({
       where: {
         username: req.body.username
       }
-    });
-    if (mechanicData) {
-      return res.status(404).render("signup", { message: "Username is already taken" });
+      })
+      if (userData) {
+        return res.status(404).render("signup", { message: "Username is already taken" });
+      }
+      await User.create(req.body);
+      req.session.save(() => {
+        // req.session.username = req.body.username;
+        // req.session.isMechanic = false;
+        res.json({ user: userData, message: 'Sign up successful! You may log in!' });
+      });
+      // signup(req, res);
     }
-    await Mechanic.create(req.body);
-    req.session.save(() => {
-      req.session.username = req.body.username;
-      req.session.isMechanic = true;
-    });
-    return signup(req, res);
+  } catch (err) {
+    res.status(400).json(err);
   }
-  // if user is a client:
-  const userData = await User.findOne({
-    where: {
-      username: req.body.username
-    }
-  })
-  if (userData) {
-    return res.status(404).render("signup", { message: "Username is already taken" });
-  }
-  await User.create(req.body);
-  req.session.save(() => {
-    req.session.username = req.body.username;
-    req.session.isMechanic = false;
-  });
-  signup(req, res);
+  
 })
 
 router.post('/login', async (req, res) => {
