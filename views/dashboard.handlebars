@@ -1,23 +1,24 @@
 {{!-- Mechanic dashboard: --}}
 {{#if isMechanic}}
 
-<h3>{{mechanic.username}}</h3>
+<h2>{{mechanic.username}}</h2>
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h2>My Open Bids</h2>
+    <div class="col-12">
+      <h3>My Open Bids</h3>
     </div>
     {{#each tickets as | ticket |}}
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">Ticket: {{ticket.title}}</h4>
-            <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
-            <p class="card-text">My Bid: {{ticket.bids.0.content}}</p>
-            <a href="./tickets/{{ticket.id}}">View Ticket</a>
-          </div>
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Ticket: {{ticket.title}}</h4>
+          <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
+          <p class="card-text">My Bid: ${{ticket.bids.0.amount}}</p>
+          <p class="card-text">My Bid Message: {{ticket.bids.0.content}}</p>
+          <a href="./tickets/{{ticket.id}}">View Ticket</a>
         </div>
       </div>
+    </div>
     {{/each}}
   </div>
 </div>
