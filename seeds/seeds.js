@@ -40,7 +40,7 @@ const seedDatabase = async () => {
   await Room.bulkCreate(roomData, {
     individualHooks: true
   });
-  
+
   process.exit(0);
 };
 

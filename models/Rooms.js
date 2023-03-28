@@ -11,7 +11,7 @@ Room.init({
     },
     userId: {
         type: DataTypes.INTEGER,
-        references:{
+        references: {
             model: "User",
             key: "id"
         }

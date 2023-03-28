@@ -31,52 +31,56 @@ router.post("/signup", async (req, res) => {
       }, {
         returning: ['id']
       });
-      const mechanic = newMechanic.get({ plain: true})
-      console.log(mechanic)
+      const mechanic = newMechanic.get({ plain: true })
+
       req.session.save(() => {
-         req.session.username = mechanic.id;
-         req.session.isMechanic = true;
-         req.session.logged_in = true;
+        req.session.user_id = mechanic.id;
+        req.session.isMechanic = true;
+        req.session.logged_in = true;
       });
-       signup(req, res);
+      signup(req, res);
     } else {
       // if user is a client:
       const userData = await User.findOne({
-      where: {
-        username: req.body.username
-      }
+        where: {
+          username: req.body.username
+        }
       })
       if (userData) {
         return res.status(404).render("signup", { message: "Username is already taken" });
       }
-      const newUser = await User.create(req.body, {
+      const newUser = await User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }, {
         returning: ['id']
       });
-      console.log(newUser)
+      const user = newUser.get({ plain: true })
       req.session.save(() => {
-         req.session.username = req.body.username;
-         req.session.isMechanic = false;
-         req.session.logged_in = true;
+        req.session.user_id = user.id;
+        req.session.isMechanic = false;
+        req.session.logged_in = true;
       });
-       signup(req, res);
+      signup(req, res);
     }
   } catch (err) {
     console.log(err)
     res.status(400).json(err);
   }
-  
+
 })
 
 router.post('/login', async (req, res) => {
   try {
     // search for user or mechanic
     const userData = await User.findOne({ where: { email: req.body.email } });
-    const mechanicData = await Mechanic.findOne({ where: { email: req.body.email }});
+    const mechanicData = await Mechanic.findOne({ where: { email: req.body.email } });
 
     // if neither, message try again
     if (!userData && !mechanicData) {
       res.status(400)
-      .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 

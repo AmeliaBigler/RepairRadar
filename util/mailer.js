@@ -70,7 +70,7 @@ const winnerBid = async (req, res, table, ticketData) => {
     try {
         //Find the mechanic who won the bid
         const mechanicData = await table.findByPk(req.body.mechanicId);
-        
+
         //Get the data from the table
         const mechanic = await mechanicData.get({ plain: true });
 
@@ -82,7 +82,7 @@ const winnerBid = async (req, res, table, ticketData) => {
                 pass: process.env.EMAIL_PASSWORD
             }
         };
-        
+
         //Initialize nodemailer
         let transporter = nodemailer.createTransport(config);
 
@@ -113,7 +113,7 @@ const winnerBid = async (req, res, table, ticketData) => {
         let mail = mailGenerator.generate(response);
         let mailtext = mailGenerator.generatePlaintext(response);
 
-        transporter.sendMail({ 
+        transporter.sendMail({
             from: `Mechanic Matchmaker <${process.env.EMAIL_USER}>`,
             to: mechanic.email,
             subject: "Bid Winner!",
@@ -127,4 +127,4 @@ const winnerBid = async (req, res, table, ticketData) => {
     }
 }
 
-module.exports =  {signup: signup, winnerBid: winnerBid};
+module.exports = { signup: signup, winnerBid: winnerBid };

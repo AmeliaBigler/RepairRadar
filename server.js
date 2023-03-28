@@ -11,7 +11,7 @@ const hbs = exphbs.create({
     }
 });
 const router = require("./controller/index.js");
-const {createServer} = require("http");
+const { createServer } = require("http");
 const { Server } = require("socket.io")
 const ioConnection = require("./util/ioConnection.js");
 
@@ -40,7 +40,7 @@ io.use(wrap(sessionSettings))
 ioConnection(io)
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 app.use(router);
