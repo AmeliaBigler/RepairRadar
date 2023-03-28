@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Bids extends Model {};
+class Bids extends Model { };
 
 Bids.init(
     {
@@ -27,7 +27,7 @@ Bids.init(
             }
         },
         ticketId: {
-            type:DataTypes.INTEGER,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'ticket',
                 key: 'id'

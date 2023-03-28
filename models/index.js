@@ -35,7 +35,7 @@ Mechanic.hasMany(Ticket,{
     foreignKey: 'winner'
 });
 
-Ticket.belongsTo(Mechanic,{
+Ticket.belongsTo(Mechanic, {
     foreignKey: 'winner'
 });
 Message.belongsTo(User, {

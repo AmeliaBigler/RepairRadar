@@ -1,15 +1,15 @@
 {{#if isMechanic}}
 <ul>
-{{#each rooms as |room|}}
-<li>Room {{room.roomId}} between you and {{room.user.username}}</li>
-<a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
-{{/each}}
+    {{#each rooms as |room|}}
+    <li>Room {{room.roomId}} between you and {{room.user.username}}</li>
+    <a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
+    {{/each}}
 </ul>
 {{else}}
 <ul>
-{{#each rooms as |room|}}
-<li>Room {{room.roomId}} between you and {{room.mechanic.username}}</li>
-<a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
-{{/each}}
+    {{#each rooms as |room|}}
+    <li>Room {{room.roomId}} between you and {{room.mechanic.username}}</li>
+    <a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
+    {{/each}}
 </ul>
 {{/if}}

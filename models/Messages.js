@@ -4,7 +4,7 @@ const sequelize = require("../config/connection.js")
 class Message extends Model { }
 
 Message.init({
-    userId:{
+    userId: {
         type: DataTypes.INTEGER,
         references: {
             model: "User",
@@ -17,7 +17,7 @@ Message.init({
             model: "Mechanic",
             key: "id"
         }
-    }, 
+    },
     roomId: {
         type: DataTypes.UUID,
         references: {

@@ -3,24 +3,24 @@ var id = url.split("/")
 var isMechanic = document.getElementById("isMechanic").dataset.ismechanic
 var chatForm = document.getElementById("chatForm")
 
-var socket = io({query: {room: id[2]}})
+var socket = io({ query: { room: id[2] } })
 
 const sendChat = async (event) => {
     event.preventDefault()
     var input = document.querySelector("#chatInput")
     var content = document.querySelector("#chatInput").value.trim()
-    if(content){
+    if (content) {
         const response = await fetch(`/messages/${id[2]}`, {
             method: "post",
-            body: JSON.stringify({content: content}),
+            body: JSON.stringify({ content: content }),
             headers: { 'Content-Type': 'application/json' }
         })
-        if (response.ok){
-            socket.emit("message",{
+        if (response.ok) {
+            socket.emit("message", {
                 content: content,
                 roomId: id[2]
             })
-            
+
             const chat = document.querySelector("#chat")
             const liEl = document.createElement("li")
             liEl.textContent = "You:"

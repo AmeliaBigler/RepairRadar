@@ -1,16 +1,16 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>Sign Up</h2>
-        </div>
+  <div class="row">
+    <div class="col">
+      <h2>Sign Up</h2>
     </div>
+  </div>
 </div>
 
 <form class="form signup-form">
   {{#if messages}}
-    <div class="alert alert-danger" role="alert">
-      {{messages}}
-    </div>
+  <div class="alert alert-danger" role="alert">
+    {{messages}}
+  </div>
   {{/if}}
   <div class="form-group">
     <label for="user-type">Choose your account type:</label>
@@ -21,15 +21,15 @@
   </div>
   <div class="form-group">
     <label for="name-signup">username:</label>
-    <input class="form-input" type="text" id="name-signup"/>
+    <input class="form-input" type="text" id="name-signup" />
   </div>
   <div class="form-group">
     <label for="email-signup">email:</label>
-    <input class="form-input" type="email" id="email-signup"/>
+    <input class="form-input" type="email" id="email-signup" />
   </div>
   <div class="form-group">
     <label for="password-signup">password:</label>
-    <input class="form-input" type="password" id="password-signup"/>
+    <input class="form-input" type="password" id="password-signup" />
   </div>
   <div class="form-group">
     <button class="btn btn-primary" type="submit">Sign Up</button>

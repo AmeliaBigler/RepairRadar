@@ -5,9 +5,9 @@ const { winnerBid } = require("../../util/mailer");
 
 dashboard.get("/", isAuth, async (req, res) => {
     try {
-        if (req.session.isMechanic){
+        if (req.session.isMechanic) {
             const mechanicData = await Mechanic.findByPk(req.session.user_id, {
-            include: [{ model: Bids }]
+                include: [{ model: Bids }]
             });
             const mechanic = mechanicData.get({ plain: true });
             const bids = mechanic.bids;
@@ -20,21 +20,21 @@ dashboard.get("/", isAuth, async (req, res) => {
                 return ticketData.get({ plain: true });
             });
             tickets = await Promise.all(tickets);
-            return res.render("dashboard", { 
-                mechanic: mechanic, 
+            return res.render("dashboard", {
+                mechanic: mechanic,
                 tickets: tickets,
-                logged_in: req.session.logged_in, 
+                logged_in: req.session.logged_in,
                 isMechanic: req.session.isMechanic
             });
         } else {
-            const userData = await User.findByPk(req.session.user_id,{
-                include: [{ 
+            const userData = await User.findByPk(req.session.user_id, {
+                include: [{
                     model: Ticket,
-                    include: { model: Bids, model: Mechanic} 
+                    include: { model: Bids, model: Mechanic }
                 }]
             });
             const user = userData.get({ plain: true });
-            res.render("dashboard", { 
+            res.render("dashboard", {
                 user: user,
                 logged_in: req.session.logged_in,
                 isMechanic: req.session.isMechanic

@@ -39,7 +39,7 @@ message.get("/:id", isAuth, async (req, res) => {
         where: {
             roomId: req.params.id
         },
-        include: [{model: User}, {model: Mechanic}]
+        include: [{ model: User }, { model: Mechanic }]
     })
     const messages = messageData.map(message => message.get({ plain: true }))
     console.log(messages)
@@ -65,7 +65,7 @@ message.post("/:id", isAuth, async (req, res) => {
             return res.status(201).end()
         }
         const roomData = await Room.findByPk(req.params.id)
-        const room = roomData.get({ plain: true})
+        const room = roomData.get({ plain: true })
         const mechanicId = room.mechanicId
         await Message.create({
             userId: req.session.user_id,
