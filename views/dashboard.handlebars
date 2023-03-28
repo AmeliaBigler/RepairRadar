@@ -13,8 +13,10 @@
         <div class="card-body">
           <h4 class="card-title">Ticket: {{ticket.title}}</h4>
           <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
-          <p class="card-text">My Bid: ${{ticket.bids.0.amount}}</p>
-          <p class="card-text">My Bid Message: {{ticket.bids.0.content}}</p>
+          {{#each bids as | bid |}}
+          <p class="card-text">My Bid: ${{bid.amount}}</p>
+          <p class="card-text">My Bid Message: {{bid.content}}</p>
+          {{/each}}
           <a href="./tickets/{{ticket.id}}">View Ticket</a>
         </div>
       </div>

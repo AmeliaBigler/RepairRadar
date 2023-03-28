@@ -14,7 +14,7 @@
               aria-labelledby="offcanvasExampleLabel">
               <div data-bs-theme="dark" class="offcanvas-header text-center">
                 <div class="rows">
-                <h5 class="offcanvas-user" id="offcanvasUser">{{user.username}}'s problem</h5>
+                <h5 class="offcanvas-user" id="offcanvasUser">{{ticket.user.username}}'s problem</h5>
                 </div>  
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
               </div>
@@ -23,16 +23,16 @@
                   <h5 class="offcanvas-title" id="offcanvasTitle">{{ticket.title}}</h5>
                   <div id="ticketissue">
                   <div class="offcanvas-issue">{{ticket.issue}}</div>
-                  <form>
+                  <form class="form bid-form">
                     <div class="mt-3 mb-3">
-                      <label for="bidAmount"class="form-label">Expected Compensation</label>
+                      <label for="bidAmount" class="form-label">Expected Compensation</label>
                       <input type="number" placeholder="$"  class="form-control" id="bidAmount" name="bidAmount">
                     </div>
                     <div class="mb-3">
                       <label for="bidMessage" class="form-label">Message to {{user.username}}</label>
                       <textarea class="form-control" placeholder="Make yourself stand out and good luck!" id="bidMessage" name="bidMessage"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Bid</button>
+                    <button type="submit" class="btn btn-primary submitBidBtn" id="bidBtn" mechanic="{{../username}}" ticketId="{{ticket.id}}">Submit Bid</button>
                   </form>
                   </div>
                 </div>
@@ -45,3 +45,7 @@
     {{/each}}
   </div>
 </div>
+
+{{#if isMechanic}}
+<script src="../js/newBid.js"></script>
+{{/if}}
