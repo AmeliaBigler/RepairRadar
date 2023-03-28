@@ -19,6 +19,10 @@ Mechanic.hasMany(Bids, {
     foreignKey: 'mechanicId',
 });
 
+Bids.belongsTo(Mechanic, {
+    foreignKey: 'mechanicId',
+})
+
 Bids.belongsTo(Ticket, {
     foreignKey: 'ticketId'
 });

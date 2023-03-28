@@ -83,7 +83,7 @@ ticket.put('/:id', isAuth, async (req, res) => {
                 id: req.params.id,
             }
         });
-        if (!ticketData[0]) {
+        if (!ticketData) {
             res.status(404).json({ message: 'No ticket with this id!' });
             return;
         }
