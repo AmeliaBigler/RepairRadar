@@ -30,7 +30,14 @@ dashboard.get("/", isAuth, async (req, res) => {
             const userData = await User.findByPk(req.session.user_id, {
                 include: [{
                     model: Ticket,
-                    include: { model: Bids, model: Mechanic }
+                    include: { 
+                        model: Mechanic ,
+                        model: Bids,
+                        include: {
+                            model: Mechanic,
+                            model: Ticket
+                        }
+                    }
                 }]
             });
             const user = userData.get({ plain: true });
