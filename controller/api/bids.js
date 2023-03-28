@@ -15,7 +15,7 @@ bids.post("/:id", async (req, res) => {
         mechanicId: mechanic.id,
         ticketId: ticket.id
     });
-    res.status(201).json("Create");
+    res.status(201).json("Created");
 })
 
 bids.delete("/bid/:id", async (req, res) => {
