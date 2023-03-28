@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { User, Mechanic } = require('../../models');
-const { signup } = require("../../util/mailer");
+const { User, Mechanic } = require("../../models/index");
+const { signup } = require("../../util/mailer.js");
 
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
@@ -20,50 +20,67 @@ router.post("/signup", async (req, res) => {
           username: req.body.username
         }
       });
+
       if (mechanicData) {
         return res.status(404).render("signup", { message: "Username is already taken" });
       }
-      await Mechanic.create(req.body);
-      req.session.save(() => {
-        // req.session.username = req.body.username;
-        // req.session.isMechanic = true;
-        res.json({ user: mechanicData, message: 'Sign up successful! You may log in!' });
+      const newMechanic = await Mechanic.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }, {
+        returning: ['id']
       });
-      // signup(req, res);
+      const mechanic = newMechanic.get({ plain: true })
+
+      req.session.save(() => {
+        req.session.user_id = mechanic.id;
+        req.session.isMechanic = true;
+        req.session.logged_in = true;
+      });
+      signup(req, res);
     } else {
       // if user is a client:
       const userData = await User.findOne({
-      where: {
-        username: req.body.username
-      }
+        where: {
+          username: req.body.username
+        }
       })
       if (userData) {
         return res.status(404).render("signup", { message: "Username is already taken" });
       }
-      await User.create(req.body);
-      req.session.save(() => {
-        // req.session.username = req.body.username;
-        // req.session.isMechanic = false;
-        res.json({ user: userData, message: 'Sign up successful! You may log in!' });
+      const newUser = await User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+      }, {
+        returning: ['id']
       });
-      // signup(req, res);
+      const user = newUser.get({ plain: true })
+      req.session.save(() => {
+        req.session.user_id = user.id;
+        req.session.isMechanic = false;
+        req.session.logged_in = true;
+      });
+      signup(req, res);
     }
   } catch (err) {
+    console.log(err)
     res.status(400).json(err);
   }
-  
+
 })
 
 router.post('/login', async (req, res) => {
   try {
     // search for user or mechanic
     const userData = await User.findOne({ where: { email: req.body.email } });
-    const mechanicData = await Mechanic.findOne({ where: { email: req.body.email }});
+    const mechanicData = await Mechanic.findOne({ where: { email: req.body.email } });
 
     // if neither, message try again
     if (!userData && !mechanicData) {
       res.status(400)
-      .json({ message: 'Incorrect email or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
 

@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Parts extends Model {};
+class Parts extends Model { };
 
 Parts.init(
     {
@@ -11,7 +11,7 @@ Parts.init(
             primaryKey: true,
             autoIncrement: true
         },
-        name: { 
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         }
@@ -25,5 +25,5 @@ Parts.init(
 );
 
 module.exports = Parts;
-        
+
 

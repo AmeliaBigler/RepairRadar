@@ -1,5 +1,5 @@
 const sequelize = require('../config/connection');
-const { User, Mechanic, Parts, Ticket, Bids, TicketParts, Room } = require('../models');
+const { User, Mechanic, Parts, Ticket, Bids, TicketParts, Room } = require('../models/index.js');
 
 const userData = require('./userData.json');
 const mechanicData = require('./mechanicData.json');
@@ -40,7 +40,7 @@ const seedDatabase = async () => {
   await Room.bulkCreate(roomData, {
     individualHooks: true
   });
-  
+
   process.exit(0);
 };
 
