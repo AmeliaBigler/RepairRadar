@@ -1,10 +1,11 @@
 const newBidHandler = async (element) => {
-  
-    const amount = document.querySelector('#bidAmount').value.trim();
-    const content = document.querySelector('#bidMessage').value.trim();
+
     const username = element.getAttribute('mechanic');
     const ticketId = element.getAttribute('ticketId');
-    console.log(amount, content, username, ticketId);
+
+    const amount = document.querySelector(`#bidAmount${ticketId}`).value.trim();
+    const content = document.querySelector(`#bidMessage${ticketId}`).value.trim();
+
     if (amount && content && username) {
         const response = await fetch(`/bids/${ticketId}`, {
             method: 'POST',

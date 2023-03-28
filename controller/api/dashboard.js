@@ -30,17 +30,20 @@ dashboard.get("/", isAuth, async (req, res) => {
             const userData = await User.findByPk(req.session.user_id, {
                 include: [{
                     model: Ticket,
-                    include: { 
-                        model: Mechanic ,
+                    include: [{ 
                         model: Bids,
                         include: {
                             model: Mechanic,
                             model: Ticket
                         }
+                    },{ 
+                        model: Mechanic,
                     }
+                ]
                 }]
             });
-            const user = userData.get({ plain: true });
+            let user = userData.get({ plain: true });
+            user = await user;
             res.render("dashboard", {
                 user: user,
                 logged_in: req.session.logged_in,

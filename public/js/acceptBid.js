@@ -3,10 +3,12 @@ const acceptBidHandler = async (element) => {
   const winner = element.getAttribute('mechanicId');
   const ticket_id = element.getAttribute('ticketId');
 
+  console.log(winner);
+
   if (winner) {
     const response = await fetch(`/tickets/${ticket_id}`, {
       method: 'PUT',
-      body: JSON.stringify({ winner }),
+      body: JSON.stringify({ winner: winner }),
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -21,7 +23,8 @@ const acceptBidHandler = async (element) => {
 const acceptBidBtn = document.querySelectorAll('.acceptBid');
 
 acceptBidBtn.forEach(function (element) {
-  element.addEventListener("click", () => {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
     acceptBidHandler(element);
   })
 });
