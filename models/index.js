@@ -31,7 +31,7 @@ Parts.belongsToMany(Ticket, {
     through: TicketParts
 });
 
-Mechanic.hasMany(Ticket, {
+Mechanic.hasMany(Ticket,{
     foreignKey: 'winner'
 });
 
