@@ -97,7 +97,7 @@ router.post('/login', async (req, res) => {
 
       req.session.save(() => {
         req.session.user_id = userData.id;
-        // req.session.username = userData.username;
+        req.session.username = userData.username;
         req.session.isMechanic = false;
         req.session.logged_in = true;
 
@@ -119,7 +119,7 @@ router.post('/login', async (req, res) => {
 
       req.session.save(() => {
         req.session.user_id = mechanicData.id;
-        // req.session.username = userData.username;
+        req.session.username = mechanicData.username;
         req.session.isMechanic = true;
         req.session.logged_in = true;
 
