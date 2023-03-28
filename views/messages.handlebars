@@ -1,26 +1,26 @@
 {{#if isMechanic}}
 <ul id="chat">
-{{#each messages as |message|}}
-{{#ifEquals massage.sentBy "Mechanic"}}
-<li>You at {{message.createdAt}}:</li>
-<li>{{message.content}}</li>
-{{else}}
-<li>{{message.mechanic.username}} at {{message.createdAt}}:</li>
-<li>{{message.content}}</li>
-{{/ifEquals}}
-{{/each}}
+    {{#each messages as |message|}}
+    {{#ifEquals massage.sentBy "Mechanic"}}
+    <li>You at {{message.createdAt}}:</li>
+    <li>{{message.content}}</li>
+    {{else}}
+    <li>{{message.mechanic.username}} at {{message.createdAt}}:</li>
+    <li>{{message.content}}</li>
+    {{/ifEquals}}
+    {{/each}}
 </ul>
 {{else}}
 <ul id="chat">
-{{#each messages as |message|}}
-{{#ifEquals massages.sentBy "User"}}
-<li>You at {{message.createdAt}}:</li>
-<li>{{message.content}}</li>
-{{else}}
-<li>Them at {{message.createdAt}}:</li>
-<li>{{message.content}}</li>
-{{/ifEquals}}
-{{/each}}
+    {{#each messages as |message|}}
+    {{#ifEquals massages.sentBy "User"}}
+    <li>You at {{message.createdAt}}:</li>
+    <li>{{message.content}}</li>
+    {{else}}
+    <li>Them at {{message.createdAt}}:</li>
+    <li>{{message.content}}</li>
+    {{/ifEquals}}
+    {{/each}}
 </ul>
 {{/if}}
 

@@ -1,39 +1,39 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>Sign Up</h2>
-        </div>
+  <div class="row justify-content-center d-flex align-items-center">
+    <div class="card col-md-6">
+      <div class="card-body">
+        <h2 class="card-title text-center mb-4">Sign Up</h2>
+        <form class="form signup-form mx-auto">
+          {{#if messages}}
+          <div class="alert alert-danger" role="alert">
+            {{messages}}
+          </div>
+          {{/if}}
+          <div class="form-group col-md-6 p-1">
+            <label for="user-type">Choose your account type:</label>
+            <select class="form-control" id="user-type">
+              <option>Mechanic</option>
+              <option>Client</option>
+            </select>
+          </div>
+          <div class="form-group col p-1">
+            <label for="name-signup">Username:</label>
+            <input class="form-control" type="text" id="name-signup" />
+          </div>
+          <div class="form-group col p-1">
+            <label for="email-signup">Email:</label>
+            <input class="form-control" type="email" id="email-signup" />
+          </div>
+          <div class="form-group col p-1">
+            <label for="password-signup">Password:</label>
+            <input class="form-control" type="password" id="password-signup" />
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto p-3">
+            <button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+          </div>
+        </form>
+        <script src="../js/signup.js"></script>
+      </div>
     </div>
+  </div>
 </div>
-
-<form class="form signup-form">
-  {{#if messages}}
-    <div class="alert alert-danger" role="alert">
-      {{messages}}
-    </div>
-  {{/if}}
-  <div class="form-group">
-    <label for="user-type">Choose your account type:</label>
-    <select class="form-control" id="user-type">
-      <option>Mechanic</option>
-      <option>Client</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="name-signup">username:</label>
-    <input class="form-input" type="text" id="name-signup"/>
-  </div>
-  <div class="form-group">
-    <label for="email-signup">email:</label>
-    <input class="form-input" type="email" id="email-signup"/>
-  </div>
-  <div class="form-group">
-    <label for="password-signup">password:</label>
-    <input class="form-input" type="password" id="password-signup"/>
-  </div>
-  <div class="form-group">
-    <button class="btn btn-primary" type="submit">Sign Up</button>
-  </div>
-</form>
-
-<script src="../js/signup.js"></script>

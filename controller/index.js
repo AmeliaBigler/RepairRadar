@@ -10,7 +10,7 @@ router.use("/tickets", ticketRoutes);
 router.use("/bids", bidsRoutes);
 router.use("/users", userRoutes);
 router.use("/dashboard", dashboardRoutes);
-router.use("/",homeRoutes);
+router.use("/", homeRoutes);
 router.use("/messages", messageRoutes)
 
 module.exports = router;

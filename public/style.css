@@ -1,3 +1,7 @@
+html {
+  overscroll-behavior: none;
+}
+
 header {
   margin-bottom: 20px;
   background-color: black;
@@ -8,7 +12,8 @@ header {
   color: white;
 }
 
-.nav-link, .navbar-brand {
+.nav-link,
+.navbar-brand {
   --a: rgb(4, 12, 251);
   --b: rgb(4, 230, 251);
   --c: rgb(25, 4, 251);
@@ -24,7 +29,7 @@ header {
   background-image: none;
   color: white;
   text-shadow: 0 0 10px var(--a), 0 0 20px var(--d), 0 0 30px var(--c), 0 0 40px var(--d);
-}  
+}
 
 .offcanvas {
   background-color: rgb(0, 0, 0);
@@ -51,9 +56,6 @@ body {
 }
 
 .card-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   max-width: 250px;
 }
 
