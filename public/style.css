@@ -1,3 +1,7 @@
+html {
+  overscroll-behavior: none;
+}
+
 header {
   margin-bottom: 20px;
   background-color: black;
@@ -52,9 +56,6 @@ body {
 }
 
 .card-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   max-width: 250px;
 }
 
