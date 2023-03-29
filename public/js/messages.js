@@ -44,4 +44,4 @@ socket.on("newMessage", (data) => {
     divEl2.setAttribute("class", "message")
 })
 
-document.querySelector("#chatForm").addEventListener("submit", sendChat);
+document.querySelector("#chatFormGroup").addEventListener("submit", sendChat);
