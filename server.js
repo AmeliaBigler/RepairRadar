@@ -7,6 +7,17 @@ const hbs = exphbs.create({
     helpers: {
         ifEquals: (arg1, arg2, options) => {
             return (arg1 === arg2) ? options.fn(this) : options.inverse(this)
+        },
+        format_date: (date) => {
+            return date.toLocaleTimeString("en-us", {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            })
         }
     }
 });
