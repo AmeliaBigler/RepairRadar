@@ -1,34 +1,63 @@
-{{#if isMechanic}}
-<ul id="chat">
-    {{#each messages as |message|}}
-    {{#ifEquals massage.sentBy "Mechanic"}}
-    <li>You at {{message.createdAt}}:</li>
-    <li>{{message.content}}</li>
+<div class="card" id="chatCard">
+  <div class="card-header" id="chatCardHeader">
+    <h3>Chat Box</h3>
+  </div>
+  <div class="card-body" style="max-height: 500px; overflow-y: scroll;">
+    {{#if isMechanic}}
+    <div id="chat">
+      {{#each messages as |message|}}
+      {{#ifEquals message.sentBy "Mechanic"}}
+      <div class="chat">You at {{format_date message.createdAt}}</div>
+      <div class="yours messages">
+        <div class="message">
+          {{message.content}}
+        </div>
+      </div>
+          {{else}}
+      <div class="chat">{{message.user.username}}</div>
+      <div class="mine messages">
+        <div class="message">
+          {{message.content}}
+        </div>
+      </div>    
+      <div id="chatMessage">{{message.mechanic.username}}</div>
+      <div id="theirMessage">{{message.content}}</div>
+      {{/ifEquals}}
+      {{/each}}
+    </div>
     {{else}}
-    <li>{{message.mechanic.username}} at {{message.createdAt}}:</li>
-    <li>{{message.content}}</li>
-    {{/ifEquals}}
-    {{/each}}
-</ul>
-{{else}}
-<ul id="chat">
-    {{#each messages as |message|}}
-    {{#ifEquals massages.sentBy "User"}}
-    <li>You at {{message.createdAt}}:</li>
-    <li>{{message.content}}</li>
-    {{else}}
-    <li>Them at {{message.createdAt}}:</li>
-    <li>{{message.content}}</li>
-    {{/ifEquals}}
-    {{/each}}
-</ul>
-{{/if}}
+    <ul id="chat">
+      {{#each messages as |message|}}
+      {{#ifEquals message.sentBy "User"}}
+       <div class="chat">You</div>
+      <div class="yours messages">
+        <div class="message">
+          {{message.content}} 
+        </div>
+      </div>
+          {{else}}
+      <div id="chatMessage">You</div>
+      <div class="mine messages">
+        <div class="message">
+          {{message.content}}
+        </div>
+      </div>    
+      <div id="chatMessage">{{message.mechanic.username}}</div>
+      <div id="theirMessage">{{message.content}}</div>
+      {{/ifEquals}}
+      {{/each}}
+    </ul>
+    {{/if}}
+  </div>
+    <form class="form form-inline" id="chatForm">
+      <div class="d-grid" id="chatFormGroup">
+        <label for="chatInput">Send a message:</label>
+        <input class="form-control" id="chatInput" type="text">
+        <button class="btn btn-primary" type="submit">Send</button>
+      </div>
+      </form>
+  </div>
 
-<form class="form" id="chatForm">
-    <label class="form-label" for="chatInput">Send a message:</label>
-    <input class="form-control" id="chatInput">
-    <button class="btn btn-primary" type="submit">Send</button>
-</form>
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script type="application/json" id="isMechanic" data-isMechanic="{{isMechanic}}"></script>
 <script src="/js/messages.js"></script>
