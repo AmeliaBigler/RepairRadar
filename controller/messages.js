@@ -27,7 +27,8 @@ message.get("/", isAuth, async (req, res) => {
         const rooms = roomData.map(room => room.get({ plain: true }))
         res.render("rooms", {
             rooms: rooms,
-            isMechanic: false
+            isMechanic: false,
+            logged_in: req.session.logged_in
         })
     } catch (error) {
         res.status(500).json(error)

@@ -1,16 +1,14 @@
 var url = window.location.pathname;
 var id = url.split("/");
 var isMechanic = document.getElementById("isMechanic").dataset.ismechanic;
-var chatForm = document.getElementById("chatForm");
 const chat = document.querySelector("#chat");
 
 var socket = io({ query: { room: id[2] } });
 
-const sendChat = async (event) => {
-    event.preventDefault();
-    var input = document.querySelector("#chatInput");
-    input.value = ""
+const sendChat = async () => {
+    var input = document.querySelector("#chatInput")
     var content = document.querySelector("#chatInput").value.trim();
+    input.value = ""
     if (content) {
         const response = await fetch(`/messages/${id[2]}`, {
             method: "post",
@@ -24,7 +22,7 @@ const sendChat = async (event) => {
             });
 
             const divEl = document.createElement("div");
-            divEl.textContent = "You:";
+            divEl.textContent = "You";
             divEl.setAttribute("class", "yours messages")
             chat.appendChild(divEl);
             const divEl2 = document.createElement("div");
@@ -41,8 +39,8 @@ socket.on("newMessage", (data) => {
     chat.appendChild(divEl);
     const divEl2 = document.createElement("div");
     divEl2.textContent = data;
-    chat.appendChild(divEl2);
+    divEl.appendChild(divEl2);
     divEl2.setAttribute("class", "message")
 })
 
-document.querySelector("#chatFormGroup").addEventListener("submit", sendChat);
+var chatForm = document.getElementById("submit").addEventListener("click", sendChat)
