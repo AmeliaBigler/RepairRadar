@@ -9,6 +9,7 @@ var socket = io({ query: { room: id[2] } });
 const sendChat = async (event) => {
     event.preventDefault();
     var input = document.querySelector("#chatInput");
+    input.value = ""
     var content = document.querySelector("#chatInput").value.trim();
     if (content) {
         const response = await fetch(`/messages/${id[2]}`, {
