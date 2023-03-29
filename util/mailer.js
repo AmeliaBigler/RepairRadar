@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const mailgen = require("mailgen");
-
+const { Ticket, User, Bids, Mechanic } = require("../models/index.js")
 
 const signup = async (req, res) => {
 
@@ -21,7 +21,7 @@ const signup = async (req, res) => {
         let mailGenerator = new mailgen({
             theme: "salted",
             product: {
-                name: "MechanicMatchmaker",
+                name: "RepairRadar",
                 //TODO: Add the link to the deployed site
                 link: "https://damp-oasis-29946.herokuapp.com"
             }
@@ -69,7 +69,11 @@ const signup = async (req, res) => {
 const winnerBid = async (req, res, table, ticketData) => {
     try {
         //Find the mechanic who won the bid
-        const mechanicData = await table.findByPk(req.body.mechanicId);
+        const mechanicData = await table.findOne({
+            where: {
+                username: ticketData.winner
+            }
+        });
 
         //Get the data from the table
         const mechanic = await mechanicData.get({ plain: true });
@@ -90,7 +94,7 @@ const winnerBid = async (req, res, table, ticketData) => {
         let mailGenerator = new mailgen({
             theme: "salted",
             product: {
-                name: "MechanicMatchmaker",
+                name: "RepairRadar",
                 //TODO: Add the link to the deployed site
                 link: "https://damp-oasis-29946.herokuapp.com"
             }
@@ -110,17 +114,40 @@ const winnerBid = async (req, res, table, ticketData) => {
             }
         };
 
+        //Generate the HTML and the plain text
         let mail = mailGenerator.generate(response);
         let mailtext = mailGenerator.generatePlaintext(response);
 
+        //Send the email
         transporter.sendMail({
             from: `Mechanic Matchmaker <${process.env.EMAIL_USER}>`,
             to: mechanic.email,
             subject: "Bid Winner!",
             text: mailtext,
             html: mail
-        }).then(() => {
-            res.render("ticket", ticketData);
+        }).then(async () => {
+            const userData = await User.findByPk(req.session.user_id, {
+                include: [{
+                    model: Ticket,
+                    include: [{
+                        model: Bids,
+                        include: {
+                            model: Mechanic,
+                            model: Ticket
+                        }
+                    }, {
+                        model: Mechanic,
+                    }
+                    ]
+                }]
+            });
+            let user = userData.get({ plain: true });
+            user = await user;
+            res.render("dashboard", {
+                user: user,
+                logged_in: req.session.logged_in,
+                isMechanic: req.session.isMechanic
+            });
         })
     } catch (error) {
         res.status(500).json(error);
