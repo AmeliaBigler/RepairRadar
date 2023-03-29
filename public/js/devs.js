@@ -12,3 +12,5 @@ const davidButton = document.querySelector('#davidButton');
 davidButton.addEventListener('click', () => {
   window.open('https://github.com/Cyril1743', '_blank');
 });
+
+$('[data-toggle="tooltip"]').tooltip()
