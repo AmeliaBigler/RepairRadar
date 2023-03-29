@@ -1,101 +1,41 @@
-{{!-- {{#if isMechanic}}
-<ul>
-    {{#each rooms as |room|}}
-    <li>Room {{room.roomId}} between you and {{room.user.username}}</li>
-    <a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
-    {{/each}}
-</ul>
-{{else}}
-<ul>
-    {{#each rooms as |room|}}
-    <li>Room {{room.roomId}} between you and {{room.mechanic.username}}</li>
-    <a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
-    {{/each}}
-</ul>
-{{/if}} --}}
-{{!-- <div class="container">
-<div class="row justify-content-center">
-{{#if isMechanic}}
-<div class="card col-md-6">
-    <div class="card-body" id="roomsCard">
-        Your Rooms
-    <ul class="list-group list-group-flush">
-        {{#each rooms as |room|}}
-        <li class="list-group-item">
-            Room {{room.roomId}} between you and {{room.user.username}}
-            <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
-        </li>
-        {{/each}}
-    </ul>
-    </div>
-</div> --}}
-{{!-- <div class="container">
-    <div class="row justify-content-center align-items-center">
-        {{#if isMechanic}}
-        <div class="card col-md-6 my-auto">
-            <div class="card-body" id="roomsCard">
-                Your Rooms
-                <ul class="list-group list-group-flush">
-                    {{#each rooms as |room|}}
-                    <li class="list-group-item">
-                        Room {{room.roomId}} between you and {{room.user.username}}
-                        <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
-                    </li>
-                    {{/each}}
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-{{else}}
-<div class="card">
-    <div class="card-header">
-        Your Rooms
-    </div>
-    <ul class="list-group list-group-flush">
-        {{#each rooms as |room|}}
-        <li class="list-group-item">
-            Room {{room.roomId}} between you and {{room.mechanic.username}}
-            <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
-        </li>
-        {{/each}}
-    </ul>
-</div>
-</div>
-</div>
-{{/if}} --}}
 <div class="container">
     <div class="row justify-content-center align-items-center d-flex">
         {{#if isMechanic}}
         <div class="col-md-6 my-auto">
           <div class="card">
             <div class="card-body">
-                <h2 class="card-title text-center mb-4">Your Rooms</h2>
-                <ul class="list-group list-group-flush">
+                <h2 class="card-title text-center mb-4">Your Rooms<i class="fas fa-info-circle fa-xs" id="infoHover" data-toggle="tooltip" data-content="This is some helpful information"></i></h2>
+                <div class="list-group list-group-flush">
                     {{#each rooms as |room|}}
-                    <li class="list-group-item">
-                        Room {{room.roomId}} between you and {{room.user.username}}
-                        <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
-                    </li>
+                    <div class="list-group-item" id="roomCard">
+                        <div>Room id: {{room.roomId}}</div>
+                        <div> User: {{room.user.username}}</div>
+                        <div class="text-center p-2">
+                        <a href="/messages/{{roomId}}" class="btn btn-primary d-block">Join</a>
+                    </div>
                     {{/each}}
-                </ul>
+                </div>
             </div>
-          </div>
+           </div>
         </div>
-        {{else}}
-        <div class="card">
-            <div class="card-header">
-                Your Rooms
+{{else}}
+   <div class="col-md-6 my-auto">
+          <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Your Rooms<i class="fas fa-info-circle fa-xs" id="infoHover" data-toggle="tooltip" data-content="This is some helpful information"></i></h2>
+                <div class="list-group list-group-flush">
+                    {{#each rooms as |room|}}
+                    <div class="list-group-item" id="roomCard">
+                        <div>Room id: {{room.roomId}}</div>
+                        <div> Mechanic: {{room.mechanic.username}}</div>
+                        <div class="text-center p-2">
+                        <a href="/messages/{{roomId}}" class="btn btn-primary d-block">Join</a>
+                    </div>
+                    {{/each}}
+                </div>
             </div>
-            <ul class="list-group list-group-flush">
-                {{#each rooms as |room|}}
-                <li class="list-group-item">
-                    Room {{room.roomId}} between you and {{room.mechanic.username}}
-                    <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
-                </li>
-                {{/each}}
-            </ul>
+           </div>
         </div>
-        {{/if}}
+    {{/if}}
     </div>
 </div>
