@@ -1,4 +1,4 @@
-{{#if isMechanic}}
+{{!-- {{#if isMechanic}}
 <ul>
     {{#each rooms as |room|}}
     <li>Room {{room.roomId}} between you and {{room.user.username}}</li>
@@ -12,4 +12,90 @@
     <a href="/messages/{{roomId}}" class="btn btn-primary">Join</a>
     {{/each}}
 </ul>
-{{/if}}
+{{/if}} --}}
+{{!-- <div class="container">
+<div class="row justify-content-center">
+{{#if isMechanic}}
+<div class="card col-md-6">
+    <div class="card-body" id="roomsCard">
+        Your Rooms
+    <ul class="list-group list-group-flush">
+        {{#each rooms as |room|}}
+        <li class="list-group-item">
+            Room {{room.roomId}} between you and {{room.user.username}}
+            <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
+        </li>
+        {{/each}}
+    </ul>
+    </div>
+</div> --}}
+{{!-- <div class="container">
+    <div class="row justify-content-center align-items-center">
+        {{#if isMechanic}}
+        <div class="card col-md-6 my-auto">
+            <div class="card-body" id="roomsCard">
+                Your Rooms
+                <ul class="list-group list-group-flush">
+                    {{#each rooms as |room|}}
+                    <li class="list-group-item">
+                        Room {{room.roomId}} between you and {{room.user.username}}
+                        <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{{else}}
+<div class="card">
+    <div class="card-header">
+        Your Rooms
+    </div>
+    <ul class="list-group list-group-flush">
+        {{#each rooms as |room|}}
+        <li class="list-group-item">
+            Room {{room.roomId}} between you and {{room.mechanic.username}}
+            <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+</div>
+</div>
+{{/if}} --}}
+<div class="container">
+    <div class="row justify-content-center align-items-center d-flex">
+        {{#if isMechanic}}
+        <div class="col-md-6 my-auto">
+          <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Your Rooms</h2>
+                <ul class="list-group list-group-flush">
+                    {{#each rooms as |room|}}
+                    <li class="list-group-item">
+                        Room {{room.roomId}} between you and {{room.user.username}}
+                        <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+          </div>
+        </div>
+        {{else}}
+        <div class="card">
+            <div class="card-header">
+                Your Rooms
+            </div>
+            <ul class="list-group list-group-flush">
+                {{#each rooms as |room|}}
+                <li class="list-group-item">
+                    Room {{room.roomId}} between you and {{room.mechanic.username}}
+                    <a href="/messages/{{roomId}}" class="btn btn-primary float-end">Join</a>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+    </div>
+</div>

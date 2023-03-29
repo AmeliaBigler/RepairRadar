@@ -13,6 +13,7 @@ message.get("/", isAuth, async (req, res) => {
             })
             const rooms = roomData.map(room => room.get({ plain: true }))
             return res.render("rooms", {
+                logged_in: req.session.logged_in,
                 rooms: rooms,
                 isMechanic: true
             })
@@ -24,7 +25,6 @@ message.get("/", isAuth, async (req, res) => {
             include: { model: Mechanic }
         })
         const rooms = roomData.map(room => room.get({ plain: true }))
-        console.log(rooms)
         res.render("rooms", {
             rooms: rooms,
             isMechanic: false
@@ -42,8 +42,8 @@ message.get("/:id", isAuth, async (req, res) => {
         include: [{ model: User }, { model: Mechanic }]
     })
     const messages = messageData.map(message => message.get({ plain: true }))
-    console.log(messages)
     res.render("messages", {
+        logged_in: req.session.logged_in,
         messages: messages,
         isMechanic: req.session.isMechanic
     })
