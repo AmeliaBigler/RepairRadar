@@ -1,5 +1,5 @@
 const ticket = require("express").Router();
-const { Ticket, Parts, TicketParts, User, Bids, Mechanic } = require("../models/index.js");
+const { Ticket, Bids, Mechanic } = require("../models/index.js");
 const isAuth = require("../util/isAuth");
 const { winnerBid } = require("../util/mailer.js");
 
