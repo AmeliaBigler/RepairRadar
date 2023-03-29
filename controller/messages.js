@@ -4,6 +4,7 @@ const isAuth = require("../util/isAuth.js")
 
 message.get("/", isAuth, async (req, res) => {
     try {
+        //If the user is a mechanic, find the rooms where the mechanic id is on the room
         if (req.session.isMechanic) {
             const roomData = await Room.findAll({
                 where: {
@@ -18,6 +19,7 @@ message.get("/", isAuth, async (req, res) => {
                 isMechanic: true
             })
         }
+        //Else, find the rooms by the user id
         const roomData = await Room.findAll({
             where: {
                 userId: req.session.user_id
@@ -36,6 +38,7 @@ message.get("/", isAuth, async (req, res) => {
 })
 
 message.get("/:id", isAuth, async (req, res) => {
+    //Whene the user clicks into the room, find all the messages associated with the room
     const messageData = await Message.findAll({
         where: {
             roomId: req.params.id
@@ -51,6 +54,7 @@ message.get("/:id", isAuth, async (req, res) => {
 })
 
 message.post("/:id", isAuth, async (req, res) => {
+    //When the user submits a message, sore it in the database
     try {
         if (req.session.isMechanic) {
             const roomData = await Room.findByPk(req.params.id)

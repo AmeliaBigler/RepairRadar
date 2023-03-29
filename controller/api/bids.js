@@ -3,14 +3,17 @@ const { Ticket, Bids, User, Mechanic } = require("../../models/index.js");
 
 bids.post("/:id", async (req, res) => {
     try {
+        //Find the mechanic by the username on the request
         const mechanicData = await Mechanic.findOne({
         where: {
             username: req.body.username
         }
         });
         const mechanic = mechanicData.get({ plain: true });
+        //Find the ticket that the bid was submitted to
         const ticketData = await Ticket.findByPk(req.params.id);
         const ticket = ticketData.get({ plain: true });
+        //Create the bid on that ticket and attach it to the ticket and the mechanic
         await Bids.create({
             amount: req.body.amount,
             content: req.body.content,
