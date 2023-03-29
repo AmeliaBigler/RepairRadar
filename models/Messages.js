@@ -32,13 +32,6 @@ Message.init({
     sentBy: {
         type: DataTypes.STRING
     }, 
-    dateTime: {
-        type: DataTypes.DATEONLY,
-        get: function() {
-           return moment(this.getDataValue('DateTime')).format('MM.DD.YYYY')
-           
-        }
-    }
 }, {
     sequelize,
     freezeTableName: true,
