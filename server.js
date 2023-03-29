@@ -16,7 +16,8 @@ const hbs = exphbs.create({
                 hour: 'numeric',
                 minute: 'numeric',
                 second: 'numeric',
-                hour12: true
+                hour12: true,
+                timeZone: 'America/Chicago'
             })
         }
     }
