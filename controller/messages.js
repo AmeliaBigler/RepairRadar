@@ -38,7 +38,7 @@ message.get("/", isAuth, async (req, res) => {
 })
 
 message.get("/:id", isAuth, async (req, res) => {
-    //Whene the user clicks into the room, find all the messages associated with the room
+    //When the user clicks into the room, find all the messages associated with the room
     const messageData = await Message.findAll({
         where: {
             roomId: req.params.id
