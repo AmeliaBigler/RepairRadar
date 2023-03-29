@@ -26,12 +26,12 @@
                   <form class="form bid-form">
                     <div class="mt-3 mb-3">
                       <label for="bidAmount" class="form-label">Expected Compensation</label>
-                      <input type="number" placeholder="$" class="form-control" id="bidAmount" name="bidAmount">
+                      <input type="number" placeholder="$" class="form-control" id="bidAmount{{ticket.id}}" name="bidAmount">
                     </div>
                     <div class="mb-3">
                       <label for="bidMessage" class="form-label">Message to {{user.username}}</label>
                       <textarea class="form-control" placeholder="Make yourself stand out and good luck!"
-                        id="bidMessage" name="bidMessage"></textarea>
+                        id="bidMessage{{ticket.id}}" name="bidMessage"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary submitBidBtn" id="bidBtn" mechanic="{{../username}}" ticketId="{{ticket.id}}">Submit Bid</button>
                   </form>
