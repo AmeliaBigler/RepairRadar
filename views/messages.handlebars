@@ -7,7 +7,7 @@
     <div id="chat">
       {{#each messages as |message|}}
       {{#ifEquals message.sentBy "Mechanic"}}
-      <div class="chat">You</div>
+      <div class="chat">You at {{format_date message.createdAt}}</div>
       <div class="yours messages">
         <div class="message">
           {{message.content}}
