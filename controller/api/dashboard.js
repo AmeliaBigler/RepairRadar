@@ -1,7 +1,6 @@
 const dashboard = require("express").Router();
-const { Ticket, User, Bids, Mechanic, Room } = require("../../models/index.js");
+const { Ticket, User, Bids, Mechanic} = require("../../models/index.js");
 const isAuth = require("../../util/isAuth");
-const { winnerBid } = require("../../util/mailer");
 
 dashboard.get("/", isAuth, async (req, res) => {
     try {
@@ -50,37 +49,6 @@ dashboard.get("/", isAuth, async (req, res) => {
                 isMechanic: req.session.isMechanic
             });
         }
-    } catch (error) {
-        res.status(500).json(error);
-    }
-});
-/* 
-
-    req.body {
-        mechanicId: mechanic who won bid
-        id: ticket id
-    }
-
-*/
-
-dashboard.put("/", async (req, res) => {
-    try {
-        await Ticket.update({
-            winner: req.body.mechanicId
-        }, {
-            where: {
-                id: req.session.user_id
-            }
-        })
-        const ticketData = await Ticket.findByPk(req.body.id);
-        const ticket = ticketData.get({ plain: true });
-
-        await Room.create({
-            userId: req.session.user_id,
-            mechanicId: req.body.mechanicId
-        });
-
-        winnerBid(req, res, Mechanic, ticket);
     } catch (error) {
         res.status(500).json(error);
     }
