@@ -22,22 +22,26 @@ const sendChat = async (event) => {
                 roomId: id[2]
             });
 
-            const liEl = document.createElement("li");
-            liEl.textContent = "You:";
-            chat.appendChild(liEl);
-            const liEl2 = document.createElement("li");
-            liEl2.textContent = content;
-            chat.appendChild(liEl2);
+            const divEl = document.createElement("div");
+            divEl.textContent = "You:";
+            divEl.setAttribute("class", "yours messages")
+            chat.appendChild(divEl);
+            const divEl2 = document.createElement("div");
+            divEl2.textContent = content;
+            divEl.appendChild(divEl2);
+            divEl2.setAttribute("class", "message")
         }
     }
 }
 socket.on("newMessage", (data) => {
-    const liEl = document.createElement("li");
-    liEl.textContent = "Them";
-    chat.appendChild(liEl);
-    const liEl2 = document.createElement("li");
-    liEl2.textContent = data;
-    chat.appendChild(liEl2);
+    const divEl = document.createElement("div");
+    divEl.textContent = "Them";
+    divEl.setAttribute("class", "mine messages")
+    chat.appendChild(divEl);
+    const divEl2 = document.createElement("div");
+    divEl2.textContent = data;
+    chat.appendChild(divEl2);
+    divEl2.setAttribute("class", "message")
 })
 
 document.querySelector("#chatForm").addEventListener("submit", sendChat);
