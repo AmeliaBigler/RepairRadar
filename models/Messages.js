@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require("../config/connection.js")
+const moment = require('moment');
 
 class Message extends Model { }
 
@@ -30,6 +31,13 @@ Message.init({
     },
     sentBy: {
         type: DataTypes.STRING
+    }, 
+    dateTime: {
+        type: DataTypes.DATEONLY,
+        get: function() {
+           return moment(this.getDataValue('DateTime')).format('MM.DD.YYYY')
+           
+        }
     }
 }, {
     sequelize,
