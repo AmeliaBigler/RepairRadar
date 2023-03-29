@@ -14,7 +14,7 @@
         </div>
       </div>
       {{else}}
-      <div class="chat d-flex justify-content-end">{{message.user.username}}</div>
+      <div class="chat d-flex justify-content-end">{{message.user.username}} at {{format_date message.createdAt}}</div>
       <div class="mine messages">
         <div class="message">
           {{message.content}}
@@ -29,31 +29,32 @@
 
 
     {{else}}
-    {{#each messages as |message|}}
-    {{#ifEquals message.sentBy "User"}}
-    <div class="chat">You</div>
-    <div class="yours messages">
-      <div class="message">
-        {{message.content}}
+    <div id="chat">
+      {{#each messages as |message|}}
+      {{#ifEquals message.sentBy "User"}}
+      <div class="chat">You at {{format_date message.createdAt}}</div>
+      <div class="yours messages">
+        <div class="message">
+          {{message.content}}
+        </div>
       </div>
-    </div>
-    {{else}}
-    <div class="chat2 d-flex justify-content-end">{{message.mechanic.username}}</div>
-    <div class="mine messages">
-      <div class="message">
-        {{message.content}}
+      {{else}}
+      <div class="chat d-flex justify-content-end">{{message.mechanic.username}} at {{format_date message.createdAt}}</div>
+      <div class="mine messages">
+        <div class="message">
+          {{message.content}}
+        </div>
       </div>
+      {{/ifEquals}}
+      {{/each}}
     </div>
-    {{/ifEquals}}
-    {{/each}}
-    </ul>
     {{/if}}
   </div>
   <form class="form form-inline" id="chatForm">
     <div class="d-grid" id="chatFormGroup">
       <label for="chatInput">Send a message:</label>
       <input class="form-control" id="chatInput" type="text">
-      <button class="btn btn-primary" type="submit">Send</button>
+      <button id="submit" class="btn btn-primary" type="button">Send</button>
     </div>
   </form>
 </div>
