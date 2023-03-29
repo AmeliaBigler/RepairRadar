@@ -21,7 +21,7 @@ const signup = async (req, res) => {
         let mailGenerator = new mailgen({
             theme: "salted",
             product: {
-                name: "MechanicMatchmaker",
+                name: "RepairRadar",
                 //TODO: Add the link to the deployed site
                 link: "https://damp-oasis-29946.herokuapp.com"
             }
@@ -94,7 +94,7 @@ const winnerBid = async (req, res, table, ticketData) => {
         let mailGenerator = new mailgen({
             theme: "salted",
             product: {
-                name: "MechanicMatchmaker",
+                name: "RepairRadar",
                 //TODO: Add the link to the deployed site
                 link: "https://damp-oasis-29946.herokuapp.com"
             }
