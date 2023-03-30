@@ -12,16 +12,28 @@
     </div>
   </div>
 </div>
-
+{{!-- won tickets: --}}
+{{#if wonTickets.length}}
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>Your Won Bids</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
-    {{#each tickets as | ticket |}}
+    {{#each wonTickets as | wonTicket |}}
       <div class="col mb-4 p-3">
         <div class="card h-100">
           <div class="card-body p-5">
-            <h4 class="card-title" id="ticket">{{ticket.title}}</h4>
-            <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
-            <p class="card-text">{{ticket.issue}}</p>
+            <h4 class="card-title" id="ticket">{{wonTicket.title}}</h4>
+            <h5 class="card-title">{{wonTicket.modelYear}} {{wonTicket.carMake}} {{wonTicket.carModel}}</h5>
+            <p class="card-text">{{wonTicket.issue}}</p>
             {{#each bids as | bid |}}
               <p class="card-text">My Bid: ${{bid.amount}}</p>
               <p class="card-text">Bid Message: {{bid.content}}</p>
@@ -32,6 +44,74 @@
     {{/each}}
   </div>
 </div>
+{{/if}}
+{{!-- open tickets: --}}
+{{#if openTickets.length}}
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>Your Pending Bids</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    {{#each openTickets as | openTicket |}}
+      <div class="col mb-4 p-3">
+        <div class="card h-100">
+          <div class="card-body p-5">
+            <h4 class="card-title" id="ticket">{{openTicket.title}}</h4>
+            <h5 class="card-title">{{openTicket.modelYear}} {{openTicket.carMake}} {{openTicket.carModel}}</h5>
+            <p class="card-text">{{openTicket.issue}}</p>
+            {{#each bids as | bid |}}
+              <p class="card-text">My Bid: ${{bid.amount}}</p>
+              <p class="card-text">Bid Message: {{bid.content}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{/if}}
+{{!-- lost tickets: --}}
+{{#if lostTickets.length}}
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>Your Lost Bids</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    {{#each lostTickets as | lostTicket |}}
+      <div class="col mb-4 p-3">
+        <div class="card h-100">
+          <div class="card-body p-5">
+            <h4 class="card-title" id="ticket">{{lostTicket.title}}</h4>
+            <h5 class="card-title">{{lostTicket.modelYear}} {{lostTicket.carMake}} {{lostTicket.carModel}}</h5>
+            <p class="card-text">{{lostTicket.issue}}</p>
+            {{#each bids as | bid |}}
+              <p class="card-text">My Bid: ${{bid.amount}}</p>
+              <p class="card-text">Bid Message: {{bid.content}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+{{/if}}
+
 {{else}}
 
 {{!-- User dashboard: --}}
@@ -61,6 +141,7 @@
   </div>
 </div>
 
+{{#if user.tickets.length}}
 <div class="container">
   <div class="row">
     {{#each user.tickets as | ticket |}}
@@ -88,7 +169,19 @@
     {{/each}}
   </div>
 </div>
-
+{{else}}
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>No Tickets, yet</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
 
 
 <script src="/js/acceptBid.js"></script> 

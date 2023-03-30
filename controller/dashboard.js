@@ -6,22 +6,38 @@ dashboard.get("/", isAuth, async (req, res) => {
     try {
         if (req.session.isMechanic) {
             const mechanicData = await Mechanic.findByPk(req.session.user_id, {
-                include: [{ model: Bids }]
+                include: { model: Bids}
             });
             const mechanic = mechanicData.get({ plain: true });
             const bids = mechanic.bids;
             var tickets = bids.map(async bid => {
                 const ticketData = await Ticket.findByPk(bid.ticketId, {
                     include: {
-                        model: Bids
+                        model: Bids,
+                        where: {mechanicId: req.session.user_id}
                     }
                 });
                 return ticketData.get({ plain: true });
             });
             tickets = await Promise.all(tickets);
+   
+            var openTickets = tickets.filter((i) => {
+                return i.winner === null
+            });
+
+            var wonTickets = tickets.filter((i) => { 
+                return i.winner === req.session.user_id
+            });
+
+            var lostTickets = tickets.filter((i) => {
+                return i.winner !== null && i.winner !== req.session.user_id
+            });
+            
             return res.render("dashboard", {
                 mechanic: mechanic,
-                tickets: tickets,
+                openTickets: openTickets,
+                wonTickets: wonTickets,
+                lostTickets: lostTickets,
                 logged_in: req.session.logged_in,
                 isMechanic: req.session.isMechanic
             });
