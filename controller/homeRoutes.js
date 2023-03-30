@@ -5,6 +5,7 @@ home.get("/", async (req, res) => {
     try {
         if (req.session.isMechanic) {
             const ticketData = await Ticket.findAll({
+                where: {winner: null},
                 include: {
                     model: User,
                 }
@@ -17,21 +18,22 @@ home.get("/", async (req, res) => {
                 isMechanic: req.session.isMechanic,
                 tickets: tickets,
                 username: mechanic.username
+            })
+        } else {
+            const ticketData = await Ticket.findAll({
+                where: {winner: null},
+                include: {
+                    model: User,
+                }
+            })
+            const tickets = ticketData.map(ticket => ticket.get({ plain: true }));
+            res.render("home", {
+                logged_in: req.session.logged_in,
+                isMechanic: req.session.isMechanic,
+                tickets: tickets
             }
-            )
-        }
-        const ticketData = await Ticket.findAll({
-            include: {
-                model: User,
-            }
-        })
-        const tickets = ticketData.map(ticket => ticket.get({ plain: true }));
-        res.render("home", {
-            logged_in: req.session.logged_in,
-            isMechanic: req.session.isMechanic,
-            tickets: tickets
-        }
-        )
+        )}
+        
 
 
     } catch (error) {
