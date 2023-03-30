@@ -28,7 +28,7 @@ Bids.belongsTo(Ticket, {
 
 Ticket.hasMany(Bids, {
     foreignKey: "ticketId",
-    onDelete: 'CASCADE'  
+    onDelete: "CASCADE"
 });
 
 Mechanic.hasMany(Ticket,{
