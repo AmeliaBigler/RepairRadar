@@ -48,7 +48,7 @@ ticket.put('/:id', isAuth, async (req, res) => {
     // update a ticket with a winning bid
     /* req.body example:
       {
-        "winner":"Sal"
+        "winner":1
       }
     */
     try {
