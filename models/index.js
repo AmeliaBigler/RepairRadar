@@ -22,11 +22,13 @@ Bids.belongsTo(Mechanic, {
 })
 
 Bids.belongsTo(Ticket, {
-    foreignKey: 'ticketId'
+    foreignKey: 'ticketId',
+    onDelete: 'CASCADE'
 });
 
 Ticket.hasMany(Bids, {
-    foreignKey: "ticketId"
+    foreignKey: "ticketId",
+    onDelete: 'CASCADE'  
 });
 
 Mechanic.hasMany(Ticket,{

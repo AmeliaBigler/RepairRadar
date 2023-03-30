@@ -19,4 +19,18 @@ const loginFormHandler = async (event) => {
   }
 };
 
+const signUp = async () => {
+  const response = await fetch('/users/signup', {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+
+  if (response.ok) {
+    document.location.replace('/users/signup');
+  } else {
+    alert(response.statusText);
+  }
+};
+
+document.querySelector('#submitBtn').addEventListener('click', signUp);
 document.querySelector('.login-form').addEventListener('submit', loginFormHandler);

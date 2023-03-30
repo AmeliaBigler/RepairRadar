@@ -1,6 +1,6 @@
 const dashboard = require("express").Router();
-const { Ticket, User, Bids, Mechanic} = require("../../models/index.js");
-const isAuth = require("../../util/isAuth");
+const { Ticket, User, Bids, Mechanic} = require("../models/index.js");
+const isAuth = require("../util/isAuth");
 
 dashboard.get("/", isAuth, async (req, res) => {
     try {
