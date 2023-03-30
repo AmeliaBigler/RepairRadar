@@ -73,7 +73,6 @@ button,
   --shadow-inner: 207deg, 100%, 50%;
   all: unset;
   color: hsla(var(--text-base), 1);
-  text-transform: uppercase;
   text-align: center;
   padding: 0.85em;
   background: inherit;
@@ -178,10 +177,6 @@ button:focus::after {
   color: white;
 }
 
-#bidCanvas {
-  color: rgb(0, 162, 255);
-  background-color: rgba(0, 0, 0, 0.765);
-}
 
 .offcanvas-title {
   text-align: center;
@@ -193,6 +188,7 @@ button:focus::after {
 
 #loginButtons {
   padding-top: 20px;
+  opacity:99%;
   justify-content: center;
   align-items: center;
 }
@@ -255,7 +251,7 @@ ul {
 
 .yours .message {
   margin-right: 25%;
-  background-color: rgb(37, 37, 234);
+  background-color: rgb(19, 84, 236);
   position: relative;
 }
 
@@ -267,7 +263,7 @@ ul {
   left: -7px;
   height: 20px;
   width: 20px;
-  background: rgb(37, 37, 234);
+  background: rgb(19, 84, 236);
   border-bottom-right-radius: 15px;
 }
 .yours .message:after {
@@ -289,7 +285,7 @@ ul {
 .mine .message {
   color: white;
   margin-left: 25%;
-  background: rgb(232, 162, 0);
+  background: rgb(54, 50, 55);
   position: relative;
 }
 
@@ -301,7 +297,7 @@ ul {
   right: -8px;
   height: 20px;
   width: 20px;
-  background: rgb(232, 162, 0);
+  background: rgb(50, 50, 55);
   border-bottom-left-radius: 15px;
 }
 
@@ -324,6 +320,32 @@ ul {
 
 #infoHover{
   padding-left: 10px;
+}
+
+#dashCard, #newTicket, #signupCard, #bidCanvas {
+  opacity:99%
+}
+
+#ticket {
+  background-image: linear-gradient(
+    345deg,
+    #0adfbf 0%,
+    #09d335 29%,
+    #ff8d13 67%,
+    #fff800 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3s linear infinite;
+      font-size: 30px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
 }
 
 @media (max-width: 770px) {

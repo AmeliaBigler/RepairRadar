@@ -1,6 +1,6 @@
 const dashboard = require("express").Router();
-const { Ticket, User, Bids, Mechanic} = require("../../models/index.js");
-const isAuth = require("../../util/isAuth");
+const { Ticket, User, Bids, Mechanic} = require("../models/index.js");
+const isAuth = require("../util/isAuth");
 
 dashboard.get("/", isAuth, async (req, res) => {
     try {
@@ -10,7 +10,7 @@ dashboard.get("/", isAuth, async (req, res) => {
             });
             const mechanic = mechanicData.get({ plain: true });
             const bids = mechanic.bids;
-            let tickets = bids.map(async bid => {
+            var tickets = bids.map(async bid => {
                 const ticketData = await Ticket.findByPk(bid.ticketId, {
                     include: {
                         model: Bids
@@ -46,7 +46,7 @@ dashboard.get("/", isAuth, async (req, res) => {
             res.render("dashboard", {
                 user: user,
                 logged_in: req.session.logged_in,
-                isMechanic: req.session.isMechanic
+                isMechanic: req.session.isMechanic,
             });
         }
     } catch (error) {

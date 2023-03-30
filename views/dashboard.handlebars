@@ -1,62 +1,83 @@
 {{!-- Mechanic dashboard: --}}
 {{#if isMechanic}}
-
-<h2>{{mechanic.username}}</h2>
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h3>My Open Bids</h3>
-    </div>
-    {{#each tickets as | ticket |}}
-    <div class="col-12">
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Ticket: {{ticket.title}}</h4>
-          <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
-          {{#each bids as | bid |}}
-          <p class="card-text">My Bid: ${{bid.amount}}</p>
-          <p class="card-text">My Bid Message: {{bid.content}}</p>
-          {{/each}}
-          <a href="./tickets/{{ticket.id}}">View Ticket</a>
+        <h2>Your Dashboard</h2>
+        <a class="nav-link" href="https://www.autozone.com/" target="_blank">Find the parts you'll need</a>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    {{#each tickets as | ticket |}}
+      <div class="col mb-4 p-3">
+        <div class="card h-100">
+          <div class="card-body p-5">
+            <h4 class="card-title" id="ticket">{{ticket.title}}</h4>
+            <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
+            <p class="card-text">{{ticket.issue}}</p>
+            {{#each bids as | bid |}}
+              <p class="card-text">My Bid: ${{bid.amount}}</p>
+              <p class="card-text">Bid Message: {{bid.content}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>
     {{/each}}
   </div>
 </div>
-
 {{else}}
-{{!-- User dashboard: --}}
-<h2>{{user.username}}</h2>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <a href="./tickets">Create a new ticket</a>
+{{!-- User dashboard: --}}
+
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="card">
+        <div class="card-body">
+      <h2>Ticket Dashboard</h2>
+      <a class="nav-link" href="./tickets">Create a new ticket</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container p-2 text-center mx-auto">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4">
+      <div class="card">
+        <div class="card-body">
+          <h2>Your Tickets</h2>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
-      <h3>My Open Tickets</h3>
-    </div>
     {{#each user.tickets as | ticket |}}
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Ticket: {{ticket.title}}</h4>
+    <div class="col-md-4">
+      <div class="card h-100" id="dashCard">
+        <div class="card-body p-5">
+          <h4 class="card-title" id="ticket">{{ticket.title}}</h4>
           <h5 class="card-title">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</h5>
           {{#if ticket.winner}}
           <p class="card-text">Your Mechanic: {{ticket.mechanic.username}}</p>
           {{else}}
           {{#if ticket.bids.length}}
-            {{#each ticket.bids as | bid |}}
-            <p class="card-text">Mechanic Bid: ${{bid.amount}}</p>
-            <p class="card-text">Mechanic Message: {{bid.content}}</p>
-            <button class="acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}">Accept this bid</button>
-            {{/each}}
+          {{#each ticket.bids as | bid |}}
+          <p class="card-text">Mechanic's Desired Wages: ${{bid.amount}}</p>
+          <p class="card-text">Message: {{bid.content}}</p>
+          <button class="btn btn-primary acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}">Accept this bid</button>
+          {{/each}}
           {{else}}
           <p class="card-text">No bids, yet.</p>
           {{/if}}
@@ -67,5 +88,8 @@
     {{/each}}
   </div>
 </div>
-<script src="/js/acceptBid.js"></script>
+
+
+
+<script src="/js/acceptBid.js"></script> 
 {{/if}}

@@ -40,6 +40,7 @@ const sendChat = async (event) => {
             divEl2.textContent = content;
             divEl.appendChild(divEl2);
             divEl2.setAttribute("class", "message")
+            divEl2.scrollIntoView()
         }
     }
 }
@@ -62,6 +63,7 @@ socket.on("newMessage", (data) => {
     divEl2.textContent = data;
     divEl.appendChild(divEl2);
     divEl2.setAttribute("class", "message")
+    divEl2.scrollIntoView()
 })
 
-var chatForm = document.getElementById("submit").addEventListener("click", sendChat)
+var chatForm = document.getElementById("chatForm").addEventListener("submit", sendChat)
