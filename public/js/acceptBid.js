@@ -3,8 +3,6 @@ const acceptBidHandler = async (element) => {
   const winner = element.getAttribute('mechanicId');
   const ticket_id = element.getAttribute('ticketId');
 
-  console.log(winner);
-
   if (winner) {
     const response = await fetch(`/tickets/${ticket_id}`, {
       method: 'PUT',

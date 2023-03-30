@@ -1,5 +1,5 @@
 const ticket = require("express").Router();
-const { Ticket, Bids, Mechanic, Room } = require("../models/index.js");
+const { Ticket, Bids, Mechanic, Room, User } = require("../models/index.js");
 const isAuth = require("../util/isAuth");
 const { winnerBid } = require("../util/mailer.js");
 
@@ -15,9 +15,11 @@ ticket.get("/:id", async (req, res) => {
 })
 
 ticket.get("/", isAuth, async (req, res) => {
+    const userData = await User.findByPk(req.session.user_id);
+    const user = userData.get({plain: true});
     res.render("newTicket", {
         logged_in: req.session.logged_in,
-        user: req.session.username
+        user: user.username
     });
 })
 
