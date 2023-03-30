@@ -16,7 +16,7 @@
 
 ## Usage
 
-- insert heroku link
+- [Link to deployed app](https://damp-oasis-29946.herokuapp.com/)
 
 ## Technologies Used 
 
