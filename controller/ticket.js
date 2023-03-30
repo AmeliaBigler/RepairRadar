@@ -1,5 +1,6 @@
 const ticket = require("express").Router();
-const { Ticket, Bids, Mechanic, User } = require("../models/index.js");
+
+const { Ticket, Bids, Mechanic, Room, User } = require("../models/index.js");
 const isAuth = require("../util/isAuth");
 const { winnerBid } = require("../util/mailer.js");
 
@@ -60,6 +61,10 @@ ticket.put('/:id', isAuth, async (req, res) => {
             res.status(404).json({ message: 'No ticket with this id!' });
             return;
         }
+        await Room.create({
+            userId: req.session.user_id,
+            mechanicId: req.body.winner
+        })
         const newTicketData = await Ticket.findByPk(req.params.id)
         const newTicket = newTicketData.get({ plain: true })
         winnerBid(req, res, Mechanic, newTicket);
