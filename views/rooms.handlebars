@@ -4,10 +4,10 @@
         <div class="col-md-6 my-auto">
           <div class="card">
             <div class="card-body">
-                <h2 class="card-title text-center mb-4">Your Rooms<i class="fas fa-info-circle fa-xs" id="infoHover" data-toggle="tooltip" data-content="This is some helpful information"></i></h2>
-                <div class="list-group list-group-flush">
+                <h2 class="card-title text-center mb-4">Your Rooms</h2>
+                <div class="p-2">
                     {{#each rooms as |room|}}
-                    <div class="list-group-item" id="roomCard">
+                    <div class="group-item" id="roomCard">
                         <div>Room id: {{room.roomId}}</div>
                         <div> User: {{room.user.username}}</div>
                         <div class="text-center p-2">
@@ -22,8 +22,8 @@
    <div class="col-md-6 my-auto">
           <div class="card">
             <div class="card-body">
-                <h2 class="card-title text-center mb-4">Your Rooms<i class="fas fa-info-circle fa-xs" id="infoHover" data-toggle="tooltip" data-content="This is some helpful information"></i></h2>
-                <div class="list-group list-group-flush">
+                <h2 class="card-title text-center mb-4">Your Rooms</h2>
+                <div class="p-2">
                     {{#each rooms as |room|}}
                     <div class="list-group-item" id="roomCard">
                         <div>Room id: {{room.roomId}}</div>
