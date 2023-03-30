@@ -251,7 +251,7 @@ ul {
 
 .yours .message {
   margin-right: 25%;
-  background-color: rgb(37, 37, 234);
+  background-color: rgb(19, 84, 236);
   position: relative;
 }
 
@@ -263,7 +263,7 @@ ul {
   left: -7px;
   height: 20px;
   width: 20px;
-  background: rgb(37, 37, 234);
+  background: rgb(19, 84, 236);
   border-bottom-right-radius: 15px;
 }
 .yours .message:after {
@@ -285,7 +285,7 @@ ul {
 .mine .message {
   color: white;
   margin-left: 25%;
-  background: rgb(232, 162, 0);
+  background: rgb(54, 50, 55);
   position: relative;
 }
 
@@ -297,7 +297,7 @@ ul {
   right: -8px;
   height: 20px;
   width: 20px;
-  background: rgb(232, 162, 0);
+  background: rgb(50, 50, 55);
   border-bottom-left-radius: 15px;
 }
 
