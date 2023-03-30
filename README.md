@@ -34,3 +34,6 @@
 
 - [NodeMailer](https://nodemailer.com/about/)
 
+## Screenshot
+![Screenshot](public/imgs/screenshot.jpg)
+
