@@ -13,7 +13,8 @@ dashboard.get("/", isAuth, async (req, res) => {
             var tickets = bids.map(async bid => {
                 const ticketData = await Ticket.findByPk(bid.ticketId, {
                     include: {
-                        model: Bids
+                        model: Bids,
+                        where: {mechanicId: req.session.user_id}
                     }
                 });
                 return ticketData.get({ plain: true });
