@@ -30,13 +30,11 @@ Ticket.hasMany(Bids, {
 });
 
 Mechanic.hasMany(Ticket,{
-    foreignKey: 'winner',
-    onDelete: "CASCADE"
+    foreignKey: 'winner'
 });
 
 Ticket.belongsTo(Mechanic, {
-    foreignKey: 'winner',
-    onDelete: "CASCADE"
+    foreignKey: 'winner'
 });
 
 Message.belongsTo(User, {
