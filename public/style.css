@@ -328,21 +328,17 @@ ul {
 
 #ticket {
   background-image: linear-gradient(
-    -80deg,
+    345deg,
     #0adfbf 0%,
     #09d335 29%,
     #ff8d13 67%,
     #fff800 100%
   );
-  background-size: auto auto;
-  background-clip: border-box;
   background-size: 200% auto;
   background-clip: text;
-  text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 3s linear infinite;
-  /* display: inline-block; */
       font-size: 30px;
 }
 
