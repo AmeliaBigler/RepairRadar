@@ -51,7 +51,9 @@ ticket.put('/:id', isAuth, async (req, res) => {
       }
     */
     try {
-        const ticketData = await Ticket.update(req.body, {
+        const ticketData = await Ticket.update({
+            winner: req.body.winner
+        }, {
             where: {
                 id: req.params.id,
             }
@@ -62,8 +64,9 @@ ticket.put('/:id', isAuth, async (req, res) => {
         }
         const newTicketData = await Ticket.findByPk(req.params.id)
         const newTicket = newTicketData.get({ plain: true })
-        winnerBid(req, res, Mechanic, newTicket);
+        winnerBid(req, res, newTicket);
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
