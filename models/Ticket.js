@@ -9,7 +9,6 @@ Ticket.init(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
-            // defaultValue: DataTypes.UUIDV4
             allowNull: false
         },
         title: {
@@ -47,6 +46,12 @@ Ticket.init(
                 model: 'user',
                 key: 'id'
             }
+        }, 
+        lat: {
+            type: DataTypes.FLOAT
+        },
+        lon: {
+            type: DataTypes.FLOAT
         }
     },
     {

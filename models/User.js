@@ -35,6 +35,12 @@ User.init(
           msg: "Password must be between 8 and 32 characters"
         }
       }
+    },
+    lat: {
+      type: DataTypes.INTEGER
+    },
+    lon: {
+      type: DataTypes.INTEGER
     }
   },
   {
