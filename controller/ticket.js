@@ -27,7 +27,8 @@ ticket.get("/", isAuth, async (req, res) => {
 ticket.post("/", isAuth, async (req, res) => {
     try {
         opencage.geocode({ q: req.body.location }).then(async (data) => {
-            if (data.results.length = 0) {
+            console.log(data.results.length)
+            if (data.results.length === 0) {
                 return res.status(404).json("Address not found")
             }
             if (data.status.code === 200 && data.results.length > 0) {
@@ -41,9 +42,9 @@ ticket.post("/", isAuth, async (req, res) => {
                     lat: data.results[0].geometry.lat,
                     lon: data.results[0].geometry.lng
                 });
-                res.status(201).render('./dashboard')
+                res.status(201).render('dashboard')
             } else {
-                res.end()
+                res.status(503).json("Busy")
             }
         })
     }

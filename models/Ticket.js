@@ -48,10 +48,10 @@ Ticket.init(
             }
         }, 
         lat: {
-            type: DataTypes.INTEGER
+            type: DataTypes.FLOAT
         },
         lon: {
-            type: DataTypes.INTEGER
+            type: DataTypes.FLOAT
         }
     },
     {
