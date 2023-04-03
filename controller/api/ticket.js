@@ -6,8 +6,8 @@ const geolib = require("geolib")
 ticket.get("/", async (req, res) => {
     const lat = req.query.lat
     const long = req.query.long
-    const radius = req.query.radius * 1609.34
-
+    const radius = req.query.radius.split(" ")
+    
     const ticketData = await Ticket.findAll();
     const ticket = ticketData.map(ticket => ticket.get({ plain: true }))
     const filteredTickets = ticket.filter(ticket => {

@@ -22,7 +22,8 @@ const search = () => {
             })
             fetch(`https://api.opencagedata.com/geocode/v1/json?q=${urlLocation}&key=6826002497534cd499241452b38d6c7d`)
                 .then((response) => response.json())
-                .then((data) => console.log(data))
+                .then((data) => 
+                    window.location.href = `api/tickets?lat=${data.results[0].geometry.lat}&long=${data.results[0].geometry.lng}&radius=${splitRadius}`)
         }
     }
 }
