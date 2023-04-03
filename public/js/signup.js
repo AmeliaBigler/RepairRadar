@@ -15,10 +15,10 @@ const signupFormHandler = async (event) => {
             });
 
             if (response.ok) {
-                alert('Sign up successful. Please log in.')
-                document.location.replace('/users/login');
+                alert('Sign up successful.')
+                document.location.replace('/');
             } else {
-                alert('Failed to signup');
+                alert('Failed to signup.');
             }
         }
     } else if (userType === 'Mechanic') {
@@ -30,10 +30,10 @@ const signupFormHandler = async (event) => {
             });
 
             if (response.ok) {
-                alert('Sign up successful. Please log in.')
-                document.location.replace('/users/login');
+                alert('Sign up successful.')
+                document.location.replace('/');
             } else {
-                alert('Failed to signup');
+                alert('Failed to signup.');
             }
         }
     }
