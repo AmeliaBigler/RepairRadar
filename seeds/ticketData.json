@@ -6,8 +6,8 @@
         "title": "Broken headlight",
         "issue": "My headlight went out and I don't have the tools to replace, I am searching for someone who can do that for me.",
         "userId": 1,
-        "lat":39,
-        "lon":-96
+        "lat":39.0601339,
+        "lon":-95.6473334
     },
     {
         "carMake": "Toyota",
@@ -26,8 +26,8 @@
         "title": "Warning Light",
         "issue": "My warning light is staying on and I have no idea what's wrong. I just need someone to take a look at it for me so I know nothing serious is wrong.",
         "userId": 3,
-        "lat":50,
-        "lon":50
+        "lat":39.0601339,
+        "lon":-95.6473334
     },
     {
         "carMake": "Acura",
@@ -46,7 +46,7 @@
         "title": "Tire keeps going flat",
         "issue": "I was hoping someone could patch my tire for me. It slowly gets flat every day but I dont want to buy a new tire because I know it can be patched.",
         "userId": 2,
-        "lat":50,
-        "lon":50
+        "lat":39.0601339,
+        "lon":-95.6473334
     }
 ]

@@ -6,22 +6,27 @@ const geolib = require("geolib")
 ticket.get("/", async (req, res) => {
     const lat = req.query.lat
     const long = req.query.long
-    const radius = req.query.radius * 1.609
+    const radius = req.query.radius * 1609.34
 
-    console.log(lat, long, radius)
     const ticketData = await Ticket.findAll();
-    const tickets = ticketData.map(ticket => ticket.get({ plain: true }))
-    const filteredTickets = tickets.filter(ticket => {
+    const ticket = ticketData.map(ticket => ticket.get({ plain: true }))
+    const filteredTickets = ticket.filter(ticket => {
         
         var distance = geolib.getDistance(
             {latitude: ticket.lat, longitude: ticket.lon},
             {latitude: lat, longitude: long}
         )
-        console.log(distance)
         return  distance <= radius
       });
-    console.log(filteredTickets)
-    res.end()
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
+      
+      res.render("search", {
+        logged_in: req.session.logged_in,
+        isMechanic: req.session.isMechanic,
+        tickets: filteredTickets
+    })
 })
 
 module.exports = ticket
