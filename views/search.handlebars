@@ -1,20 +1,4 @@
-<div class="container">
-  {{#if isMechanic}}
-  <form class="form">
-    <label for="location">Find Cars Near:</label>
-    <input id="location" type="text" pattern="^\d+\s[A-z\s\d#\-.,\/]+$">
-    <label for="myLocation">Or Use My Location</label>
-    <input id="myLocation" type="checkbox">
-    <label for="radius">Within:</label>
-    <select id="radius">
-      <option value="5 miles" selected> 5 miles</option>
-      <option value="10 miles"> 10 miles</option>
-      <option value="20 miles"> 20 miles </option>
-    </select>
-    <button id="searchBtn" type="button" class="btn btn-success">Search</button>
-  </form>
-  {{/if}}
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+ <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     {{#each tickets as |ticket|}}
     <div class="col">
       <div class="card">
@@ -22,7 +6,6 @@
           <h5 class="card-title">{{user.username}}</h5>
           <p class="card-text">{{ticket.modelYear}} {{ticket.carMake}} {{ticket.carModel}}</p>
           <p class="card-text">{{ticket.title}}</p>
-          {{#if ../isMechanic}}
           <button href="#offcanvasExample{{ticket.id}}" id="bidCanvas" class="btn btn-primary"
             data-bs-toggle="offcanvas" role="button" aria-controls="offcanvasExample">Place Bid</button>
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample{{ticket.id}}"
@@ -56,15 +39,9 @@
               </div>
             </div>
           </div>
-          {{/if}}
         </div>
       </div>
     </div>
     {{/each}}
   </div>
 </div>
-
-{{#if isMechanic}}
-<script src="/js/newBid.js"></script>
-<script src="/js/search.js"></script>
-{{/if}}

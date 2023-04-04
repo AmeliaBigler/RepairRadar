@@ -2,6 +2,7 @@ const ticket = require("express").Router();
 const { Ticket, Bids, Mechanic, Room, User } = require("../models/index.js");
 const isAuth = require("../util/isAuth");
 const { winnerBid } = require("../util/mailer.js");
+const opencage = require('opencage-api-client');
 
 ticket.get("/:id", async (req, res) => {
     const ticketData = await Ticket.findByPk(req.params.id, {
@@ -16,7 +17,7 @@ ticket.get("/:id", async (req, res) => {
 
 ticket.get("/", isAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id);
-    const user = userData.get({plain: true});
+    const user = userData.get({ plain: true });
     res.render("newTicket", {
         logged_in: req.session.logged_in,
         user: user.username
@@ -25,18 +26,27 @@ ticket.get("/", isAuth, async (req, res) => {
 
 ticket.post("/", isAuth, async (req, res) => {
     try {
-        const newTicket = await Ticket.create({
-            title: req.body.title,
-            carMake: req.body.carMake,
-            carModel: req.body.carModel,
-            modelYear: req.body.modelYear,
-            issue: req.body.issue,
-            userId: req.session.user_id
-        },
-            {
-                returning: ["id"]
-            });
-        res.status(201).render('./dashboard');
+        opencage.geocode({ q: req.body.location }).then(async (data) => {
+            console.log(data.results.length)
+            if (data.results.length === 0) {
+                return res.status(404).json("Address not found")
+            }
+            if (data.status.code === 200 && data.results.length > 0) {
+                await Ticket.create({
+                    title: req.body.title,
+                    carMake: req.body.carMake,
+                    carModel: req.body.carModel,
+                    modelYear: req.body.modelYear,
+                    issue: req.body.issue,
+                    userId: req.session.user_id,
+                    lat: data.results[0].geometry.lat,
+                    lon: data.results[0].geometry.lng
+                });
+                res.status(201).render('dashboard')
+            } else {
+                res.status(503).json("Busy")
+            }
+        })
     }
     catch (error) {
         res.status(500).json(error);
