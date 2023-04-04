@@ -3,7 +3,7 @@
     <div class="col-lg-8">
       <div class="card" id="newTicket">
         <div class="card-header d-flex justify-content-center">
-          <h2>Create a New Ticket</h2>
+          <h2 id="ticket">Create a New Ticket</h2>
         </div>
         <div class="card-body">
           <form class="form ticket-form">
@@ -24,29 +24,28 @@
               <input class="form-control" type="number" id="modelYear" />
             </div>
             <div class="form-group p-1">
-              <label for="issue">Issue:</label>
-              <textarea class="form-control" id="issue" rows="3"></textarea>
-            </div>
-            <fieldset>
-              <legend>Where is the car located?</legend>
-              <div class="form-group p-1">
               <label for="street">Address:</label>
-              <input id="street" type="text" pattern="^\d+\s[A-z\s\d#\-.,\/]+$">
-              </div>
-              <div class="form-group p-1">
+              <input class="form-control" id="street" type="text" pattern="^\d+\s[A-z\s\d#\-.,\/]+$" placeholder="Location of car if not home address">
+            </div>
+            <div class="form-group p-1">
               <label for="city">City:</label>
-              <input id="city" type="text">
-              </div>
-              <div class="form-group p-1">
+              <input class="form-control" id="city" type="text">
+            </div>
+            <div class="form-group p-1">
               <label for="state">State:</label>
-              <input id="state" type="text">
-              </div>
-              <div class="form-group p-1">
+              <input class="form-control" id="state" type="text">
+            </div>
+            <div class="form-group p-1">
               <label for="zip">Zip:</label>
-              <input id="zip" type="number" aria-describedby="zipHelp">
-              <p id="zipHelp">Caution! This address will be associated with the ticket. If an incorrect address is inputed, the mechanic may not be able to find your car!</p>
-              </div>
-            </fieldset>
+              <input class="form-control" id="zip" type="number" aria-describedby="zipHelp">
+            </div>
+            <div class="form-group p-1">
+              <label for="issue">Detailed description of your problem:</label>
+              <textarea class="form-control" id="issue" rows="6" placeholder="Please provide as much detail as possible regarding the problem with your car"></textarea>
+            </div>
+            <div>
+              <p class="text-info p-3">Please note that any information regarding your address will not be displayed to the public. It's <b class="text-warning">STRICTLY</b> to help mechanics find work within their area. Make sure the address you put in is accurate to the cars location if your car happens to not be at your home address. Failing to do so may prevent you from accessing mechanics that would otherwise have seen your ticket in their area.</p>
+            </div>
             <div class="form-group p-3 d-flex justify-content-center">
               <button class="btn btn-primary col-4" type="button">Submit</button>
             </div>

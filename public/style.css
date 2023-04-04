@@ -326,7 +326,7 @@ ul {
   opacity:99%
 }
 
-#ticket {
+#ticket, #strict {
   background-image: linear-gradient(
     345deg,
     #0adfbf 0%,
