@@ -16,7 +16,7 @@
 
 ## Usage
 
-- [Link to deployed app](https://damp-oasis-29946.herokuapp.com/)
+- [Link to deployed app](https://repairradar.herokuapp.com)
 
 ## Technologies Used 
 
