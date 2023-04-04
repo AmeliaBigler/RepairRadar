@@ -6,7 +6,7 @@ const signupFormHandler = async (event) => {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
-    if (userType === 'User') {
+    if (userType === 'Client') {
         if (username && email && password) {
             const response = await fetch('/users/signup', {
                 method: 'POST',
@@ -40,5 +40,6 @@ const signupFormHandler = async (event) => {
 
 };
 
+  
 
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
