@@ -9,7 +9,7 @@
           <form class="form ticket-form">
             <div class="form-group p-1">
               <label for="title">Title:</label>
-              <input class="form-control" type="text" id="title" />
+              <input class="form-control" type="text" id="title" placeholder="Short Description of your problem" />
             </div>
             <div class="form-group p-1">
               <label for="car-make">Car Make:</label>
@@ -41,7 +41,7 @@
             </div>
             <div class="form-group p-1">
               <label for="issue">Detailed description of your problem:</label>
-              <textarea class="form-control" id="issue" rows="6" placeholder="Please provide as much detail as possible regarding the problem with your car"></textarea>
+              <textarea class="form-control" id="issue" rows="6" placeholder="Please provide as many details as possible regarding the problem you are having with your car"></textarea>
             </div>
             <div>
               <p class="text-info p-3">Please note that any information regarding your address will not be displayed to the public. It's <b class="text-warning">STRICTLY</b> to help mechanics find work within their area. Make sure the address you put in is accurate to the cars location if your car happens to not be at your home address. Failing to do so may prevent you from accessing mechanics that would otherwise have seen your ticket in their area.</p>
@@ -55,21 +55,5 @@
     </div>
   </div>
 </div>
-<div class="modal fade" id="errorModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Error</h5>
-        <button type="button" class="btn-close close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button id="close" type="button" class="btn btn-danger close" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 <script src="/js/newTicket.js"></script>

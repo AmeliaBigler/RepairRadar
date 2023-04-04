@@ -38,6 +38,7 @@ header {
 body {
   overscroll-behavior: none;
   background-image: url('../assets/1710104.jpg');
+  background-attachment: fixed;
   font-family: 'Philosopher', sans-serif;
 }
 
