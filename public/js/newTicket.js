@@ -1,3 +1,5 @@
+var modal = new bootstrap.Modal(document.getElementById("errorModal"))
+
 const ticketFormHandler = async () => {
 
   const title = document.querySelector('#title').value.trim();
