@@ -6,7 +6,7 @@ const signupFormHandler = async (event) => {
     const email = document.querySelector('#email-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
 
-    if (userType === 'User') {
+    if (userType === 'Client') {
         if (username && email && password) {
             const response = await fetch('/users/signup', {
                 method: 'POST',
@@ -40,5 +40,15 @@ const signupFormHandler = async (event) => {
 
 };
 
+const displayModal = (message, isSuccess) => {
+    const modalBody = document.querySelector('.modal-body');
+    const modalTitle = document.querySelector('.modal-title');
+    const modal = new bootstrap.Modal(document.querySelector('#exampleModal'));
+  
+    modalTitle.innerText = isSuccess ? 'Success!' : 'Error!';
+    modalBody.innerText = message;
+    modal.show();
+  };
+  
 
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
