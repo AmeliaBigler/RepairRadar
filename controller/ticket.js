@@ -89,11 +89,7 @@ ticket.delete("/:id", isAuth, async (req, res) => {
                 id: req.params.id
             }
         })
-        const ticketData = await Ticket.findByPk(req.body.id, {
-            include: { model: Bids }
-        });
-        const ticket = ticketData.get({ plain: true });
-        res.render("dashboard", { ticket });
+        res.status(201).json("Delete");
     } catch (error) {
         res.status(500).json(error);
     }
