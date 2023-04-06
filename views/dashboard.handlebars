@@ -2,11 +2,11 @@
 {{#if isMechanic}}
 <div class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-6">
       <div class="card">
         <div class="card-body">
-        <h2>Your Dashboard</h2>
-        <a class="nav-link" href="https://www.autozone.com/" target="_blank">Find the parts you'll need</a>
+          <h2>Your Dashboard</h2>
+          <a class="nav-link" href="https://www.autozone.com/" target="_blank">Find the parts you'll need</a>
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@
 {{#if wonTickets.length}}
 <div class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
           <h2>Your Won Bids</h2>
@@ -28,19 +28,19 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {{#each wonTickets as | wonTicket |}}
-      <div class="col mb-4 p-3">
-        <div class="card h-100">
-          <div class="card-body p-5">
-            <h4 class="card-title" id="ticket">{{wonTicket.title}}</h4>
-            <h5 class="card-title">{{wonTicket.modelYear}} {{wonTicket.carMake}} {{wonTicket.carModel}}</h5>
-            <p class="card-text">{{wonTicket.issue}}</p>
-            {{#each bids as | bid |}}
-              <p class="card-text">My Bid: ${{bid.amount}}</p>
-              <p class="card-text">Bid Message: {{bid.content}}</p>
-            {{/each}}
-          </div>
+    <div class="col mb-4 p-3">
+      <div class="card h-100">
+        <div class="card-body p-5">
+          <h4 class="card-title" id="ticket">{{wonTicket.title}}</h4>
+          <h5 class="card-title">{{wonTicket.modelYear}} {{wonTicket.carMake}} {{wonTicket.carModel}}</h5>
+          <p class="card-text">{{wonTicket.issue}}</p>
+          {{#each bids as | bid |}}
+          <p class="card-text">My Bid: ${{bid.amount}}</p>
+          <p class="card-text">Bid Message: {{bid.content}}</p>
+          {{/each}}
         </div>
       </div>
+    </div>
     {{/each}}
   </div>
 </div>
@@ -49,7 +49,7 @@
 {{#if openTickets.length}}
 <div class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
           <h2>Your Pending Bids</h2>
@@ -61,19 +61,20 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {{#each openTickets as | openTicket |}}
-      <div class="col mb-4 p-3">
-        <div class="card h-100">
-          <div class="card-body p-5">
-            <h4 class="card-title" id="ticket">{{openTicket.title}}</h4>
-            <h5 class="card-title">{{openTicket.modelYear}} {{openTicket.carMake}} {{openTicket.carModel}}</h5>
-            <p class="card-text">{{openTicket.issue}}</p>
-            {{#each bids as | bid |}}
-              <p class="card-text">My Bid: ${{bid.amount}}</p>
-              <p class="card-text">Bid Message: {{bid.content}}</p>
-            {{/each}}
-          </div>
+    <div class="col mb-4 p-3">
+      <div class="card h-100">
+        <div class="card-body p-5">
+          <h4 class="card-title" id="ticket">{{openTicket.title}}</h4>
+          <h5 class="card-title">{{openTicket.modelYear}} {{openTicket.carMake}} {{openTicket.carModel}}</h5>
+          <p class="card-text">{{openTicket.issue}}</p>
+          {{#each bids as | bid |}}
+          <p class="card-text">My Bid: ${{bid.amount}}</p>
+          <p class="card-text">Bid Message: {{bid.content}}</p>
+          <button class="btn btn-secondary deleteBid" bidId="{{bid.id}}">Delete this bid</button>
+          {{/each}}
         </div>
       </div>
+    </div>
     {{/each}}
   </div>
 </div>
@@ -94,35 +95,37 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {{#each lostTickets as | lostTicket |}}
-      <div class="col mb-4 p-3">
-        <div class="card h-100">
-          <div class="card-body p-5">
-            <h4 class="card-title" id="ticket">{{lostTicket.title}}</h4>
-            <h5 class="card-title">{{lostTicket.modelYear}} {{lostTicket.carMake}} {{lostTicket.carModel}}</h5>
-            <p class="card-text">{{lostTicket.issue}}</p>
-            {{#each bids as | bid |}}
-              <p class="card-text">My Bid: ${{bid.amount}}</p>
-              <p class="card-text">Bid Message: {{bid.content}}</p>
-            {{/each}}
-          </div>
+    <div class="col mb-4 p-3">
+      <div class="card h-100">
+        <div class="card-body p-5">
+          <h4 class="card-title" id="ticket">{{lostTicket.title}}</h4>
+          <h5 class="card-title">{{lostTicket.modelYear}} {{lostTicket.carMake}} {{lostTicket.carModel}}</h5>
+          <p class="card-text">{{lostTicket.issue}}</p>
+          {{#each bids as | bid |}}
+          <p class="card-text">My Bid: ${{bid.amount}}</p>
+          <p class="card-text">Bid Message: {{bid.content}}</p>
+          {{/each}}
+          <button class="btn btn-secondary deleteBid" bidId="{{bid.id}}">Clear ticket and bid from my dashboard</button>
         </div>
       </div>
+    </div>
     {{/each}}
   </div>
 </div>
 {{/if}}
 
+<script src="/js/mechanicDashboard.js"></script>
 {{else}}
 
 {{!-- User dashboard: --}}
 
 <div class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-lg-6">
       <div class="card">
         <div class="card-body">
-      <h2>Ticket Dashboard</h2>
-      <a class="nav-link" href="./tickets">Create a new ticket</a>
+          <h2>Ticket Dashboard</h2>
+          <a class="nav-link" href="./tickets">Create a new ticket</a>
         </div>
       </div>
     </div>
@@ -131,7 +134,7 @@
 
 <div class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
           <h2>Your Tickets</h2>
@@ -157,12 +160,14 @@
           {{#each ticket.bids as | bid |}}
           <p class="card-text">Mechanic's Desired Wages: ${{bid.amount}}</p>
           <p class="card-text">Message: {{bid.content}}</p>
-          <button class="btn btn-primary acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}">Accept this bid</button>
+          <button class="btn btn-primary acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}">Accept
+            this bid</button>
           {{/each}}
           {{else}}
           <p class="card-text">No bids, yet.</p>
           {{/if}}
           {{/if}}
+          <button class="btn btn-secondary deleteTicket" ticketId="{{ticket.id}}">Delete this ticket</button>
         </div>
       </div>
     </div>
@@ -172,10 +177,10 @@
 {{else}}
 <div class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
-    <div class="col-lg-4">
+    <div class="col-lg-8">
       <div class="card">
         <div class="card-body">
-          <h2>No Tickets, yet</h2>
+          <h2>You have no tickets created!</h2>
         </div>
       </div>
     </div>
@@ -184,5 +189,5 @@
 {{/if}}
 
 
-<script src="/js/acceptBid.js"></script> 
+<script src="/js/userDashboard.js"></script>
 {{/if}}

@@ -26,3 +26,31 @@ acceptBidBtn.forEach(function (element) {
     acceptBidHandler(element);
   })
 });
+
+const deleteTicketHandler = async (element) => {
+
+  const ticket_id = element.getAttribute('ticketId');
+
+  if (ticket_id) {
+    const response = await fetch(`/tickets/${ticket_id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({ id: ticket_id }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.ok) {
+      document.location.replace('/dashboard');
+    } else {
+      alert('Failed to delete ticket');
+    }
+  }
+};
+
+const deleteTicketBtn = document.querySelectorAll('.deleteTicket');
+
+deleteTicketBtn.forEach(function (element) {
+  element.addEventListener("click", (event) => {
+    event.preventDefault();
+    deleteTicketHandler(element);
+  })
+});

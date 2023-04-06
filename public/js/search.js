@@ -13,7 +13,7 @@ const search = () => {
                 window.location.href = `/api/tickets?lat=${lat}&long=${long}&radius=${splitRadius[0]}`
             })
         } else {
-            var urlLocation = location.replace(/,| /g, (match) => {
+           const urlLocation = location.replace(/,| /g, (match) => {
                 if (match === ',') {
                     return '%2C';
                 } else if (match === ' ') {
@@ -23,7 +23,7 @@ const search = () => {
             fetch(`https://api.opencagedata.com/geocode/v1/json?q=${urlLocation}&key=6826002497534cd499241452b38d6c7d`)
                 .then((response) => response.json())
                 .then((data) => 
-                    window.location.href = `api/tickets?lat=${data.results[0].geometry.lat}&long=${data.results[0].geometry.lng}&radius=${splitRadius}`)
+                    window.location.href = `api/tickets?lat=${data.results[0].geometry.lat}&long=${data.results[0].geometry.lng}&radius=${splitRadius[0]}`)
         }
     }
 }
