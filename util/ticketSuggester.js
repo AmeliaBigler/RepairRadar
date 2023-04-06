@@ -2,7 +2,8 @@ const natural = require('natural');
 const { TfIdf, BayesClassifier } = natural
 const tickets = require("./ticketExample.json")
 
-const labeledDocuments = JSON.parse(tickets)
+
+const labeledDocuments = tickets
 
 const tfidf = new TfIdf()
 labeledDocuments.forEach(doc => tfidf.addDocument(doc.text))
