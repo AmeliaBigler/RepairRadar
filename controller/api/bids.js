@@ -1,7 +1,8 @@
 const bids = require("express").Router();
 const { Ticket, Bids, User, Mechanic } = require("../../models/index.js");
+const isAuth = require("../../util/isAuth");
 
-bids.post("/:id", async (req, res) => {
+bids.post("/:id", isAuth, async (req, res) => {
     try {
         //Find the mechanic by the username on the request
         const mechanicData = await Mechanic.findOne({
@@ -26,17 +27,17 @@ bids.post("/:id", async (req, res) => {
     }
 })
 
-bids.delete("/:id", async (req, res) => {
-    await Bids.destroy({
+bids.delete("/:id", isAuth, async (req, res) => {
+    try {
+        await Bids.destroy({
         where: {
             id: req.params.id
         }
-    });
-    const ticketData = await Ticket.findByPk(req.body.id, {
-        include: { model: Bids }
-    });
-    const ticket = ticketData.get({ plain: true });
-    res.render("dashboard", { ticket });
-});
+        });
+        res.status(201).json("Delete");
+    } catch (err) {
+        res.status(400).json(err);
+    }   
+})
 
 module.exports = bids

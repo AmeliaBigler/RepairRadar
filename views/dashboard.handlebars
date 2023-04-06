@@ -70,6 +70,7 @@
           {{#each bids as | bid |}}
           <p class="card-text">My Bid: ${{bid.amount}}</p>
           <p class="card-text">Bid Message: {{bid.content}}</p>
+          <button class="btn btn-secondary deleteBid" bidId="{{bid.id}}">Delete this bid</button>
           {{/each}}
         </div>
       </div>
@@ -104,6 +105,7 @@
           <p class="card-text">My Bid: ${{bid.amount}}</p>
           <p class="card-text">Bid Message: {{bid.content}}</p>
           {{/each}}
+          <button class="btn btn-secondary deleteBid" bidId="{{bid.id}}">Clear ticket and bid from my dashboard</button>
         </div>
       </div>
     </div>
@@ -112,6 +114,7 @@
 </div>
 {{/if}}
 
+<script src="/js/mechanicDashboard.js"></script>
 {{else}}
 
 {{!-- User dashboard: --}}
@@ -164,6 +167,7 @@
           <p class="card-text">No bids, yet.</p>
           {{/if}}
           {{/if}}
+          <button class="btn btn-secondary deleteTicket" ticketId="{{ticket.id}}">Delete this ticket</button>
         </div>
       </div>
     </div>
@@ -185,5 +189,5 @@
 {{/if}}
 
 
-<script src="/js/acceptBid.js"></script>
+<script src="/js/userDashboard.js"></script>
 {{/if}}
