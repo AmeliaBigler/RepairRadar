@@ -3,8 +3,9 @@ var id = url.split("/");
 var isMechanic = document.getElementById("isMechanic").dataset.ismechanic;
 const chat = document.querySelector("#chat");
 
-var socket = io({ query: { room: id[2] } });
+var socket = io();
 
+socket.emit("joinRoom", {room: id[2]})
 const sendChat = async (event) => {
     event.preventDefault()
     var input = document.querySelector("#chatInput")

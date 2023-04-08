@@ -29,7 +29,7 @@ router.post("/signup", async (req, res) => {
         email: req.body.email,
         password: req.body.password
       }, {
-        returning: ['id']
+        returning: ['id', 'username']
       });
       const mechanic = newMechanic.get({ plain: true })
 
@@ -37,6 +37,7 @@ router.post("/signup", async (req, res) => {
         req.session.user_id = mechanic.id;
         req.session.isMechanic = true;
         req.session.logged_in = true;
+        req.session.username = mechanic.username
       });
       signup(req, res);
     } else {
@@ -54,13 +55,14 @@ router.post("/signup", async (req, res) => {
         email: req.body.email,
         password: req.body.password
       }, {
-        returning: ['id']
+        returning: ['id', 'username']
       });
       const user = newUser.get({ plain: true })
       req.session.save(() => {
         req.session.user_id = user.id;
         req.session.isMechanic = false;
         req.session.logged_in = true;
+        req.session.username = user.username
       });
       signup(req, res);
     }
@@ -99,6 +101,7 @@ router.post('/login', async (req, res) => {
         req.session.user_id = userData.id;
         req.session.isMechanic = false;
         req.session.logged_in = true;
+        req.session.username = userData.username
 
         res.json({ user: userData, message: 'You are now logged in!' });
       });
@@ -120,6 +123,7 @@ router.post('/login', async (req, res) => {
         req.session.user_id = mechanicData.id;
         req.session.isMechanic = true;
         req.session.logged_in = true;
+        req.session.username = mechanicData.username
 
         res.json({ user: mechanicData, message: 'You are now logged in!' });
       });

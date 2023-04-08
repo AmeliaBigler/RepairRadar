@@ -14,9 +14,9 @@
     <button id="searchBtn" type="button" class="btn btn-success">Search</button>
   </form>
   {{/if}}
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  <div id="main" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     {{#each tickets as |ticket|}}
-    <div class="col">
+    <div id="{{ticket.id}}" class="col">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{user.username}}</h5>
@@ -63,7 +63,7 @@
     {{/each}}
   </div>
 </div>
-
+<script src="/js/home.js"></script>
 {{#if isMechanic}}
 <script src="/js/newBid.js"></script>
 <script src="/js/search.js"></script>
