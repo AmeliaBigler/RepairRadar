@@ -32,7 +32,7 @@ ticket.post("/", isAuth, async (req, res) => {
                 return res.status(404).json("Address not found")
             }
             if (data.status.code === 200 && data.results.length > 0) {
-                await Ticket.create({
+                var ticket = await Ticket.create({
                     title: req.body.title,
                     carMake: req.body.carMake,
                     carModel: req.body.carModel,
@@ -42,7 +42,7 @@ ticket.post("/", isAuth, async (req, res) => {
                     lat: data.results[0].geometry.lat,
                     lon: data.results[0].geometry.lng
                 });
-                res.status(201).render('dashboard')
+                res.status(201).json({ id: ticket.id })
             } else {
                 res.status(503).json("Busy")
             }

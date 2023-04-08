@@ -1,4 +1,5 @@
 var modal = new bootstrap.Modal(document.getElementById("errorModal"))
+const socket = io()
 
 const ticketFormHandler = async () => {
 
@@ -20,6 +21,15 @@ const ticketFormHandler = async () => {
     });
 
     if (response.ok) {
+      var { id } = await response.json()
+      socket.emit("ticket", {
+        id: id,
+        title: title,
+        carMake: carMake,
+        carModel: carModel,
+        modelYear: modelYear,
+        issue: issue
+      })
       document.location.replace('/dashboard');
     } else {
       response.json().then((data) => {
