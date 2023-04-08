@@ -1,3 +1,5 @@
+const socket = io()
+
 const acceptBidHandler = async (element) => {
 
   const winner = element.getAttribute('mechanicId');
@@ -39,6 +41,7 @@ const deleteTicketHandler = async (element) => {
     });
 
     if (response.ok) {
+      socket.emit("ticketDelete", ticket_id)
       document.location.replace('/dashboard');
     } else {
       alert('Failed to delete ticket');
