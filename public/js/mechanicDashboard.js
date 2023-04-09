@@ -66,5 +66,29 @@ socket.on("newTicketWinner", (data) => {
       btn.off()
       btn.remove()
     }
+  } else {
+    const lostTickets = $("#lostTickets")
+    if (lostTickets.length > 0){
+      lostTickets.append(ticket)
+    } else {
+      const mainDiv = (".my-view")
+      mainDiv.append(`<div id="lostTickets" class="container p-2 text-center mx-auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <h2>Your Lost Bids</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`)
+    mainDiv.append(`<div class="container">
+    <div id="lostTicketList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+    </div>
+    </div>`)
+    const lostTicketList = $("#lostTicketList")
+    lostTicketList.append(ticket)
+    }
   }
 })
