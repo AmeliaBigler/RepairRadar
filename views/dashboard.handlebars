@@ -14,7 +14,7 @@
 </div>
 {{!-- won tickets: --}}
 {{#if wonTickets.length}}
-<div class="container p-2 text-center mx-auto">
+<div id="wonTicketsHeader" class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
     <div class="col-lg-8">
       <div class="card">
@@ -26,7 +26,7 @@
   </div>
 </div>
 <div class="container">
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+  <div id="wonTicketList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {{#each wonTickets as | wonTicket |}}
     <div class="col mb-4 p-3">
       <div class="card h-100">
@@ -61,7 +61,7 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     {{#each openTickets as | openTicket |}}
-    <div class="col mb-4 p-3">
+    <div id="{{openTicket.id}}" class="col mb-4 p-3">
       <div class="card h-100">
         <div class="card-body p-5">
           <h4 class="card-title" id="ticket">{{openTicket.title}}</h4>
@@ -70,7 +70,7 @@
           {{#each bids as | bid |}}
           <p class="card-text">My Bid: ${{bid.amount}}</p>
           <p class="card-text">Bid Message: {{bid.content}}</p>
-          <button class="btn btn-secondary deleteBid" bidId="{{bid.id}}">Delete this bid</button>
+          <button class="btn btn-secondary deleteBid" data-bidid="{{bid.id}}">Delete this bid</button>
           {{/each}}
         </div>
       </div>
@@ -81,7 +81,7 @@
 {{/if}}
 {{!-- lost tickets: --}}
 {{#if lostTickets.length}}
-<div class="container p-2 text-center mx-auto">
+<div id="lostTickets" class="container p-2 text-center mx-auto">
   <div class="row d-flex justify-content-center">
     <div class="col-lg-4">
       <div class="card">
@@ -160,8 +160,8 @@
           {{#each ticket.bids as | bid |}}
           <p class="card-text">Mechanic's Desired Wages: ${{bid.amount}}</p>
           <p class="card-text">Message: {{bid.content}}</p>
-          <button class="btn btn-primary acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}">Accept
-            this bid</button>
+          <button class="btn btn-primary acceptBid" mechanicId="{{bid.mechanicId}}" ticketId="{{bid.ticketId}}"
+            bidId="{{bid.id}}">Accept this bid</button>
           {{/each}}
           {{else}}
           <p class="card-text">No bids, yet.</p>

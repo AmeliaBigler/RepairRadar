@@ -4,6 +4,7 @@ const acceptBidHandler = async (element) => {
 
   const winner = element.getAttribute('mechanicId');
   const ticket_id = element.getAttribute('ticketId');
+  const bid_id = element.getAttribute("bidId")
 
   if (winner) {
     const response = await fetch(`/tickets/${ticket_id}`, {
@@ -13,7 +14,14 @@ const acceptBidHandler = async (element) => {
     });
 
     if (response.ok) {
-      document.location.replace('/dashboard');
+      console.log("Winner received")
+       const ticketWinnerData = JSON.stringify({ ticketId: ticket_id, bidId: bid_id})
+      socket.emit("ticketWinner", ticketWinnerData)
+      socket.emit("ticketDelete", ticket_id)
+      setTimeout(() => {
+        document.location.replace('/dashboard');
+      }, 1000)      
+      
     } else {
       alert('Failed to accept bid');
     }
