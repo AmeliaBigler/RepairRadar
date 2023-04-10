@@ -1,11 +1,10 @@
 const socket = io()
 
 socket.on("newTicket", (data) => {
-  console.log("Event Received")
   data = JSON.parse(data)
   var mainDiv = $("#main")
   const mechanic = $("#bidBtn").attr("mechanic");
-  const card = $(`<div class="col">
+  const card = $(`<div id='${data.id}' class="col">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">${data.username}</h5>
@@ -26,7 +25,7 @@ socket.on("newTicket", (data) => {
           </div>
           <div class="offcanvas-body">
             <div>
-              <h5 class="offcanvas-title" id="ticket">${ticket.title}</h5>
+              <h5 class="offcanvas-title" id="ticket">${data.title}</h5>
               <div id="ticketissue">
                 <div class="offcanvas-issue">${data.issue}</div>
                 <form class="form bid-form">
@@ -51,4 +50,15 @@ socket.on("newTicket", (data) => {
     </div>
   </div>`)
   }
+})
+
+socket.on("ticketDelete", (data) => {
+  var offcanvas = $(`#offcanvasExample${data}`)
+  var offcanvasBtn = $('> button', offcanvas)
+  var ticket = $(`#${data}`)
+  var ticketBtn = $('> button', ticket)
+ offcanvasBtn.off()
+ ticketBtn.off()
+ offcanvas.remove()
+ ticket.remove()
 })
