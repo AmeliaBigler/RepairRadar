@@ -1,11 +1,10 @@
 var url = window.location.pathname;
 var id = url.split("/");
-var isMechanic = document.getElementById("isMechanic").dataset.ismechanic;
 const chat = document.querySelector("#chat");
 
-var socket = io();
+import { socket } from "/js/socket.js";
 
-socket.emit("joinRoom", {room: id[2]})
+socket.emit("joinRoom", { room: id[2] })
 const sendChat = async (event) => {
     event.preventDefault()
     var input = document.querySelector("#chatInput")

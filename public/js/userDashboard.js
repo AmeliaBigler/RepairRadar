@@ -1,4 +1,4 @@
-const socket = io()
+import { socket } from "/js/socket.js";
 
 const acceptBidHandler = async (element) => {
 
@@ -15,13 +15,13 @@ const acceptBidHandler = async (element) => {
 
     if (response.ok) {
       console.log("Winner received")
-       const ticketWinnerData = JSON.stringify({ ticketId: ticket_id, bidId: bid_id})
+      const ticketWinnerData = JSON.stringify({ ticketId: ticket_id, bidId: bid_id })
       socket.emit("ticketWinner", ticketWinnerData)
       socket.emit("ticketDelete", ticket_id)
       setTimeout(() => {
         document.location.replace('/dashboard');
-      }, 1000)      
-      
+      }, 1000)
+
     } else {
       alert('Failed to accept bid');
     }
@@ -65,3 +65,7 @@ deleteTicketBtn.forEach(function (element) {
     deleteTicketHandler(element);
   })
 });
+
+socket.on("newBid", (data) => {
+  console.log(data)
+})

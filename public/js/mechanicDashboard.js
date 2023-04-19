@@ -1,4 +1,4 @@
-const socket = io()
+import { socket } from "/js/socket.js";
 
 const deleteBidHandler = async (element) => {
 
@@ -68,7 +68,7 @@ socket.on("newTicketWinner", (data) => {
     }
   } else {
     const lostTickets = $("#lostTickets")
-    if (lostTickets.length > 0){
+    if (lostTickets.length > 0) {
       lostTickets.append(ticket)
     } else {
       const mainDiv = (".my-view")
@@ -83,12 +83,12 @@ socket.on("newTicketWinner", (data) => {
         </div>
       </div>
     </div>`)
-    mainDiv.append(`<div class="container">
+      mainDiv.append(`<div class="container">
     <div id="lostTicketList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
     </div>
     </div>`)
-    const lostTicketList = $("#lostTicketList")
-    lostTicketList.append(ticket)
+      const lostTicketList = $("#lostTicketList")
+      lostTicketList.append(ticket)
     }
   }
 })

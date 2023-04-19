@@ -1,5 +1,5 @@
 var modal = new bootstrap.Modal(document.getElementById("errorModal"))
-const socket = io()
+import { socket } from "/js/socket.js";
 
 const ticketFormHandler = async () => {
 

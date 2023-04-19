@@ -1,4 +1,4 @@
-const socket = io()
+import { socket } from "/js/socket.js";
 
 socket.on("newTicket", (data) => {
   data = JSON.parse(data)
@@ -57,8 +57,8 @@ socket.on("ticketDelete", (data) => {
   var offcanvasBtn = $('> button', offcanvas)
   var ticket = $(`#${data}`)
   var ticketBtn = $('> button', ticket)
- offcanvasBtn.off()
- ticketBtn.off()
- offcanvas.remove()
- ticket.remove()
+  offcanvasBtn.off()
+  ticketBtn.off()
+  offcanvas.remove()
+  ticket.remove()
 })
