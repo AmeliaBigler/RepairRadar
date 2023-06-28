@@ -343,6 +343,10 @@ ul {
       font-size: 30px;
 }
 
+.searchBarInput {
+  width: 300px;
+}
+
 @keyframes textclip {
   to {
     background-position: 200% center;
