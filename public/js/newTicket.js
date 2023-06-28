@@ -10,7 +10,7 @@ const ticketFormHandler = async () => {
   const issue = document.querySelector('#issue').value.trim();
   const street = document.querySelector("#street").value.trim()
   const city = document.querySelector("#city").value.trim()
-  const state = document.querySelector("#state").value.trim()
+  const state = document.querySelector("#state").value
   const zipCode = document.querySelector("#zip").value.trim()
 
   if (title && carMake && carModel && modelYear && issue && street && city && state && zipCode) {

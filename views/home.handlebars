@@ -1,18 +1,18 @@
 <div class="container">
   {{#if isMechanic}}
-  <form class="form">
+  <div class="card">
     <label for="location">Find Cars Near:</label>
-    <input id="location" type="text" pattern="^\d+\s[A-z\s\d#\-.,\/]+$">
+    <input id="location" type="text" pattern="^\d+\s[A-z\s\d#\-.,\/]+$" class="searchBarInput" name="location">
     <label for="myLocation">Or Use My Location</label>
-    <input id="myLocation" type="checkbox">
+    <input id="myLocation" type="checkbox" class="searchBarInput" name="myLocation">
     <label for="radius">Within:</label>
-    <select id="radius">
+    <select id="radius" class="searchBarInput" name="radius">
       <option value="5 miles" selected> 5 miles</option>
       <option value="10 miles"> 10 miles</option>
       <option value="20 miles"> 20 miles </option>
     </select>
-    <button id="searchBtn" type="button" class="btn btn-success">Search</button>
-  </form>
+    <button id="searchBtn" type="button" class="button">Search</button>
+  </div>
   {{/if}}
   <div id="main" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     {{#each tickets as |ticket|}}
